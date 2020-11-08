@@ -114,3 +114,81 @@ iu.__proto__.name = '이 지금!';
 console.log(iu.__proto__.getName());        // 이 지금!
 console.log(iu.__proto__.getName.call(iu)); // 지금
 
+// prototype 체인
+var arr = [1, 2];
+arr.push(3);
+console.log(arr.hasOwnProperty(2));
+console.log(arr.__proto__.__proto__.hasOwnProperty(2));
+
+console.log(Array.prototype.toString.call(arr));
+console.log(Object.prototype.toString.call(arr));
+console.log(arr.toString());
+
+arr.toString = function () {
+  return this.join('_');  // 오버라이딩
+};
+
+console.log(arr.toString());      // 1_2_3
+
+// Object.prototype에 메서드 추가 -> 객체인경우 해당 메서드를 전부사용가능
+console.log("Object.prototype 메서드 추가");
+Object.prototype.getEntries = function () {
+  var res = [];
+  for (var prop in this) {
+    if (this.hasOwnProperty(prop)) {
+      res.push([prop, this[prop]]);
+    }
+  }
+
+  return res;
+};
+
+var data = [
+  ['object', {a: 1, b: 2, c: 3}],
+  ['number', 345],
+  ['string', 'abc'],
+  ['boolean', false],
+  ['func', function () {}],
+  ['array', [1, 2, 3]]
+];
+
+data.forEach(function (datum) {
+  console.log(datum[1].getEntries());
+});
+
+// __proto__가 없는 객체 생성 (예외적 케이스, Object.prototype이 최상위에 존재하지 않게 할 경우)
+var _proto = Object.create(null);
+_proto.getValue = function (key) {
+  return this[key];
+};
+
+var obj = Object.create(_proto);
+obj.a = 1;
+console.log(obj.getValue('a')); // 1
+console.dir(obj);
+
+// console.log(obj.toString());  // 에러 : obj.toString is not a function
+
+
+// 생성자 함수와 인스턴스
+var Grade = function () {
+  var args = Array.prototype.slice.call(arguments);
+  for (var i = 0; i < args.length; i++) {
+    this[i] = args[i];
+  }
+
+  this.length = args.length;
+};
+
+var g = new Grade(100, 80);
+console.log(g);
+// 다중 프로토타입 체이닝
+// prototype을 Array.__proto__ (배열 인스턴스)에 연결
+// -> 배멸 메서드도 사용이 가능해짐
+Grade.prototype = [];
+var g2 = new Grade(100, 80);
+console.log(g2);
+g2.pop()
+console.log(g2);
+g2.push(90);
+console.log(g2);
