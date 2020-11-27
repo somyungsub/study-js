@@ -92,3 +92,9 @@ modules.xml
 .idea/sonarlint
 
 # End of https://www.toptal.com/developers/gitignore/api/webstorm+all
+
+
+# 예제 관련
+edu/[인프런]vue.js 시작하기 - level1/learn-vue-js
+edu/[인프런]vue.js 시작하기 - level1/learn-vue-js/*
+
