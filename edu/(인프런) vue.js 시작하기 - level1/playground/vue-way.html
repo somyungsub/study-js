@@ -11,19 +11,31 @@
   let div = document.querySelector("#app");
   var viewModel = {};
 
-  // 오브젝트 동작을 재정의 하는 함수
-  // Object.defineProperty(대상객체, 객채의 속성, {정의할 내용})
-  let defineProperty = Object.defineProperty(viewModel, 'str', {
-    // 속성에 접근했을 때의 동작을 정의
-    get: function () {
-      console.log('접근');
-    },
-    // 속성에 값을 할당했을 때의 동작을 정의
-    set: function (newValue) {
-      console.log('할당', newValue);
-      div.innerHTML = newValue;     // data-binding
+  (function () {
+    function init() {
+      // 오브젝트 동작을 재정의 하는 함수
+      // Object.defineProperty(대상객체, 객채의 속성, {정의할 내용})
+      Object.defineProperty(viewModel, 'str', {
+        // 속성에 접근했을 때의 동작을 정의
+        get: function () {
+          console.log('접근');
+        },
+        // 속성에 값을 할당했을 때의 동작을 정의
+        set: function (newValue) {
+          console.log('할당', newValue);
+          render(newValue);
+        }
+      })
     }
-  });
+
+    function render(value) {
+      div.innerHTML = value;
+    }
+
+    init();
+  })();
+
+
 </script>
 </body>
 </html>
