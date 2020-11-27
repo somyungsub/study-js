@@ -8,6 +8,7 @@
 <div id="app">
 <!--  <app-header v-bind:props속성이름="상위 컴포넌트의 데이터 이름"></app-header>-->
   <app-header v-bind:propsdata="message"></app-header>
+  <app-content v-bind:propsdata2="num"></app-content>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -17,13 +18,20 @@
     props: ['propsdata']
   }
 
+  var appContent = {
+    template: '<div>{{propsdata2}}</div>',
+    props:['propsdata2']
+  };
+
   new Vue({
     el: '#app',
     components: {
-      'app-header': appHeader
+      'app-header': appHeader,
+      'app-content': appContent
     },
     data: {
-      message: 'hi'
+      message: 'hi',
+      num: 10
     }
   })
 </script>
