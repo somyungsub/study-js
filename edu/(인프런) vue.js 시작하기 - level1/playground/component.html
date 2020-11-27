@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <app-header></app-header>
+  <app-content></app-content>
+  <app-footer></app-footer>
+</div>
+
+<div id="app2">
+  <app-header></app-header>
+  <app-footer></app-footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  // Vue.component('컴포넌트 이름', 컴포넌트 내용);
+  // 전역 컴포넌트 -> 거의 쓸일은 없음
+  Vue.component('app-header', {
+    template: '<h1>Header</h1>'
+  });
+
+  Vue.component('app-content', {
+    template: '<div>content</div>'
+  });
+
+  // 지역 컴포넌트 -> 주로 쓰게 됨
+  new Vue({
+    el: '#app',
+    components: {       // 지역 컴포넌트
+
+      // 형식 '컴포넌트 이름' : 컴포넌트 내용 형식으로
+      'app-footer': {
+        template: '<footer>footer</footer>'
+      },
+    }
+  });
+
+  new Vue({
+    el: '#app2',
+    components: {
+      'app-footer': {
+        template: '<footer>footer</footer>'
+      },
+    }
+  });
+</script>
+</body>
+</html>
