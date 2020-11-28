@@ -24,6 +24,8 @@
   </div>
 
   <!-- TODO: 인풋 박스를 만들고 입력된 값을 p태그에 출력해보세요 -->
+  <input type="text" v-model="message" placeholder="edit me">
+  <p>{{message}}</p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -35,16 +37,15 @@
       // doubleNum: 10 & 2,
       uuid: 'abc1234',
       name: 'text-blue',
-      loading: true
+      loading: true,
+      message: ''
     },
     computed: { // data 쪽 제어
       doubleNum: function () {
         return this.num * 2;
       }
-
     }
-
-  })
+  });
 </script>
 </body>
 <style>
