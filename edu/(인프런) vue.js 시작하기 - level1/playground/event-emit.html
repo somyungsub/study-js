@@ -30,7 +30,7 @@
       }
     }
   };
-  new Vue({
+  var vm = new Vue({
     el:'#app',
     components: {
       'app-header': appHeader,
@@ -41,7 +41,7 @@
         console.log('hi')
       },
       increaseNumber: function () {
-        this.num++;
+        this.num++; // this.num -> data.num 속성을 가르키게 된다
         console.log(this.num);
       }
     },
