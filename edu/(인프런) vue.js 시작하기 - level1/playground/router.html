@@ -5,7 +5,16 @@
   <title>Title</title>
 </head>
 <body>
-<div id="app"></div>
+<div id="app">
+  <div>
+    <!-- a태그로 인식하게 됨 -->
+    <router-link to="/login">Login</router-link>
+    <router-link to="/main">Main</router-link>
+  </div>
+
+  <!-- router가 가지고 있는 ... -->
+  <router-view></router-view>
+</div>
 
 <!--
   순서 중요
@@ -17,9 +26,33 @@
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 
 <script>
-  var router = new VueRouter({
+  var LoginComponent = {
+    template: '<div>login</div>'
+  };
 
+  var MainComponent = {
+    template: '<div>main</div>'
+  };
+
+  var router = new VueRouter({
+    // 페이지의 라우팅 정보 -> URL 이동시 페이지 렌더링
+    routes: [
+      {
+        // 페이지의 url
+        path: '/login',
+        // 해당 url에서 표시될 컴포넌트
+        component: LoginComponent,
+        name: 'login'
+      },
+      {
+        // url은 main
+        // 컴포넌트 이름은 MainComponent
+        path: '/main',
+        component: MainComponent
+      }
+    ]
   });
+
 
   // vue에서 router을 인식
   new Vue({
