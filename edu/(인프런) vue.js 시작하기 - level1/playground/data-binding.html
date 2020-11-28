@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <p>{{num}}</p>
+  <!-- 계산된 값  -->
+  <p>{{doubleNum}}</p>
+
+<!--  <p id="abc1234">{{num}}</p>-->
+  <p v-bind:id="uuid" v-bind:class="name">{{num}}</p>
+
+  <div v-if="loading">
+    Loading...
+  </div>
+  <div v-else>
+    test user login benn logged in
+  </div>
+  <div v-show="loading">
+    Loading...
+  </div>
+
+  <!-- TODO: 인풋 박스를 만들고 입력된 값을 p태그에 출력해보세요 -->
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      num: 10,
+      // doubleNum: 10 & 2,
+      uuid: 'abc1234',
+      name: 'text-blue',
+      loading: true
+    },
+    computed: { // data 쪽 제어
+      doubleNum: function () {
+        return this.num * 2;
+      }
+
+    }
+
+  })
+</script>
+</body>
+<style>
+  .text-blue{
+      font-size: 20px;
+  }
+</style>
+</html>
