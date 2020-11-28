@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <button v-on:click="addNum">increase</button>
+  {{num}}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      num: 10
+    },
+    watch: {  // data를 기본 대상, 데이터 변경에 따른 특정 로직 수행
+      num: function () {  // num 데이터가 변경시 실행
+        this.logText();
+      }
+    },
+    methods: {
+      addNum: function () {
+        this.num = this.num + 1;
+      },
+      logText: function () {
+        console.log('changed');
+      }
+    }
+  })
+</script>
+</body>
+</html>
