@@ -31,6 +31,10 @@
 </template>
 
 <script>
+// var appContent = {
+//   props: ['msg']
+// }
+
 export default {
   name: 'HelloWorld',
   props: {
