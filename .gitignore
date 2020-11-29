@@ -94,7 +94,10 @@ modules.xml
 # End of https://www.toptal.com/developers/gitignore/api/webstorm+all
 
 # node 모듈
-edu/**/node_modules
+/**/node_modules
+
+# 빌드
+/**/dist
 
 # 예제 관련
 edu/(인프런) vue.js 시작하기 - level1/learn-vue-js
