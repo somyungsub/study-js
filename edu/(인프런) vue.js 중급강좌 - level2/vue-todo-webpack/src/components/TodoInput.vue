@@ -18,9 +18,13 @@ export default {
   },
   methods: {
     addTodo: function () {
-      // 저장하는 로직
-      localStorage.setItem(this.newTodoItem, this.newTodoItem);   // key - value
-      this.clearInput();
+      if (this.newTodoItem !== '') {
+        // 저장하는 로직
+        var obj = {completed: false, item: this.newTodoItem};
+        // localStorage.setItem(this.newTodoItem, obj);   // key - value
+        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));   // application tab에서 데이터 보기 가능해짐
+        this.clearInput();
+      }
     },
     clearInput: function () {
       this.newTodoItem = '';
