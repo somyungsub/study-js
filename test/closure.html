@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="test">
+    10
+  </div>
+  <button id="ok">OK</button>
+</body>
+
+<script>
+  $(document).ready(function () {
+    console.log("test!");
+    var count = 0;
+    var intervalID = setInterval(function () {
+      count = parseInt($('#test').text()) - 1;
+      $('#test').text(count);
+
+    }, 1000);
+    setTimeout(function () {
+      // var t = clearTimeout(intervalID);
+      // console.log(t);
+      clearTimeout(intervalID);
+      console.log("----- END ");
+    }, 10001);
+
+    var outer = function () {
+      var count = 3;
+      var inner =  function () {
+        // 로직 수행
+        console.log("로직 수행중!!");
+        if (--count < 0) {
+          alert("기회가 없습니다");
+        } else {
+          console.log('게임스타트!!');
+        }
+      };
+
+      return inner;
+    };
+
+    var countCheck = outer();
+    $('#ok').on('click', function () {
+      console.log("test");
+      countCheck();
+    });
+  });
+</script>
+</html>
