@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul>
+    <transition-group name="list" tag="ul">
       <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem">
         <i class="checkBtn fas fa-check"
            v-bind:class="{checkBtnCompleted: todoItem.completed}"
@@ -11,14 +11,14 @@
           <i class="fa fa-trash" aria-hidden="true"></i>
         </span>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
 <script>
 export default {
   name: "TodoList",
-  props:['propsdata'],
+  props: ['propsdata'],
   methods: {
     removeTodo: function (todoItem, index) {
       this.$emit('removeTodoItem', todoItem, index);
@@ -26,8 +26,7 @@ export default {
     toggleComplete: function (todoItem, index) {
       this.$emit('toggleTodoItem', todoItem, index);
     }
-  },
-
+  }
 }
 </script>
 
@@ -68,5 +67,16 @@ li {
 .removeBtn {
   margin-left: auto;
   color: #de4343;
+}
+
+/* 리스트 아이템 트렌지션 효과*/
+.list-enter-active, .list-leave-active {
+  transition: all 500ms;
+}
+
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */
+{
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
