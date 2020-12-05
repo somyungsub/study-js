@@ -11,6 +11,7 @@
 <script>
 export default {
   name: "TodoInput",
+  props:['propsdata'],
   data: function () {
     return {
       newTodoItem: ''
@@ -19,10 +20,8 @@ export default {
   methods: {
     addTodo: function () {
       if (this.newTodoItem !== '') {
-        // 저장하는 로직
-        var obj = {completed: false, item: this.newTodoItem};
-        // localStorage.setItem(this.newTodoItem, obj);   // key - value
-        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));   // application tab에서 데이터 보기 가능해짐
+        // this.$emit('이벤트이름', 인자,인자), 이벤트 전달
+        this.$emit('addTodoItem', this.newTodoItem);
         this.clearInput();
       }
     },

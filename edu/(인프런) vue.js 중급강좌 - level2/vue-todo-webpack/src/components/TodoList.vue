@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem">
+      <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem">
         <i class="checkBtn fas fa-check"
            v-bind:class="{checkBtnCompleted: todoItem.completed}"
            v-on:click="toggleComplete(todoItem, index)">
@@ -18,33 +18,16 @@
 <script>
 export default {
   name: "TodoList",
-  data: function () {
-    return {
-      todoItems: []
-    };
-  },
+  props:['propsdata'],
   methods: {
     removeTodo: function (todoItem, index) {
-      console.log('remove : ', todoItem, index);
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1);
+      this.$emit('removeTodoItem', todoItem, index);
     },
     toggleComplete: function (todoItem, index) {
-      todoItem.completed = !todoItem.completed;
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+      this.$emit('toggleTodoItem', todoItem, index);
     }
   },
-  created: function () {
-    // 라이프 사이클 10개정도 중 인스턴스가 생성되자마자 호출되는 ..생성자 같은 녀석
-    if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-        }
-      }
-    }
-  }
+
 }
 </script>
 
