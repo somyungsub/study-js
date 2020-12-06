@@ -6,6 +6,8 @@
 <!--    <TodoList v-bind:하위컴포넌트에 내려 보내를 프롭스 속성이름="todoItems"/>-->
     <TodoList/>
     <TodoFooter/>
+    <Demo/>
+    <Axios/>
   </div>
 </template>
 
@@ -14,13 +16,17 @@ import TodoHeader from './components/TodoHeader';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
 import TodoFooter from './components/TodoFooter';
+import Demo from './components/Demo';
+import Axios from './components/Axios';
 
 export default {
   components: {
+    Axios,
     TodoHeader,
     TodoInput,
     TodoList,
-    TodoFooter
+    TodoFooter,
+    Demo
   },
   // data() {
   //   return {

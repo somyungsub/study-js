@@ -27,7 +27,7 @@ import Modal from './common/Modal.vue';
 
 export default {
   name: "TodoInput",
-  props:['propsdata'],
+  // props:['propsdata'],
   data() {
     return {
       newTodoItem: '',
