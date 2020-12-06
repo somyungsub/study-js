@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Axios Test!!</h1>
-    <button @click="getUserDate">getUserData!!</button>
+    <button @click="getUserData">getUserData!!</button>
     <ul>
       {{this.userData}}
     </ul>
@@ -13,7 +13,7 @@ import {mapActions, mapGetters} from 'vuex';
 export default {
   name: "Axios",
   methods: {
-    ...mapActions(['getUserDate']),
+    ...mapActions(['getUserData']),
   },
   computed: {
     ...mapGetters(['userData'])
