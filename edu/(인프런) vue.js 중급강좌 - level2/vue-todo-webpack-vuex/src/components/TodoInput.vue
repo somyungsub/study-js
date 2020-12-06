@@ -38,7 +38,8 @@ export default {
     addTodo() {
       if (this.newTodoItem !== '') {
         // this.$emit('이벤트이름', 인자,인자), 이벤트 전달
-        this.$emit('addTodoItem', this.newTodoItem);
+        // this.$emit('addTodoItem', this.newTodoItem);
+        this.$store.commit('addOneItem', this.newTodoItem); //store의 mutations의 addOneItem 발동
         this.clearInput();
       } else {
         this.showModal = !this.showModal;
