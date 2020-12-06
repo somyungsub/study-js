@@ -28,14 +28,14 @@ import Modal from './common/Modal.vue';
 export default {
   name: "TodoInput",
   props:['propsdata'],
-  data: function () {
+  data() {
     return {
       newTodoItem: '',
       showModal: false
     }
   },
   methods: {
-    addTodo: function () {
+    addTodo() {
       if (this.newTodoItem !== '') {
         // this.$emit('이벤트이름', 인자,인자), 이벤트 전달
         this.$emit('addTodoItem', this.newTodoItem);
@@ -44,7 +44,7 @@ export default {
         this.showModal = !this.showModal;
       }
     },
-    clearInput: function () {
+    clearInput() {
       this.newTodoItem = '';
     }
   },

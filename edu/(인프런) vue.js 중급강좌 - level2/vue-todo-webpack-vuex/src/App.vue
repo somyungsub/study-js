@@ -18,43 +18,42 @@ import TodoList from './components/TodoList';
 import TodoFooter from './components/TodoFooter';
 
 export default {
-  data: function () {
+  data() {
     return {
       todoItems: [] // 아이템을 여기서 중앙관리
     }
   },
   components: {
-    'TodoHeader': TodoHeader,
-    'TodoInput': TodoInput,
-    'TodoList': TodoList,
-    'TodoFooter': TodoFooter
+    TodoHeader,
+    TodoInput,
+    TodoList,
+    TodoFooter
   },
   methods:{
     // App.vue에서 중앙관리
-    addOneItem: function (todoItem) {
-      var obj = {completed: false, item: todoItem};
-      // localStorage.setItem(this.newTodoItem, obj);   // key - value
+    addOneItem(todoItem) {
+      let obj = {completed: false, item: todoItem};
       localStorage.setItem(todoItem, JSON.stringify(obj));   // application tab에서 데이터 보기 가능해짐
       this.todoItems.push(obj);
     },
-    removeOneItem: function (todoItem, index) {
+    removeOneItem(todoItem, index) {
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);
     },
-    toggleOneItem: function (todoItem, index) {
+    toggleOneItem(todoItem, index) {
       this.todoItems[index].completed = !todoItem.completed;
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(this.todoItems[index], JSON.stringify(this.todoItems[index]));
     },
-    clearAllItems: function () {
+    clearAllItems() {
       localStorage.clear();
       this.todoItems = [];
     }
   },
-  created: function () {
+  created() {
     // 라이프 사이클 10개정도 중 인스턴스가 생성되자마자 호출되는 ..생성자 같은 녀석
     if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
+      for (let i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
           this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
         }
