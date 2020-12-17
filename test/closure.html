@@ -7,47 +7,59 @@
 </head>
 <body>
   <div id="test">
-    10
+    20
   </div>
   <button id="ok">OK</button>
 </body>
 
 <script>
   $(document).ready(function () {
-    console.log("test!");
-    var count = 0;
-    var intervalID = setInterval(function () {
-      count = parseInt($('#test').text()) - 1;
-      $('#test').text(count);
 
-    }, 1000);
-    setTimeout(function () {
-      // var t = clearTimeout(intervalID);
-      // console.log(t);
-      clearTimeout(intervalID);
-      console.log("----- END ");
-    }, 10001);
+    function getInterval() {
+      return setInterval(function () {
+        var count = parseInt($('#test').text()) - 1;
+        $('#test').text(count);
 
-    var outer = function () {
-      var count = 3;
+      }, 1000);
+    }
+
+    function getTimeout(intervalID) {
+      return setTimeout(function () {
+        clearTimeout(intervalID);
+        console.log("game start!!");
+      }, 10001);
+    }
+
+    var intervalID = getInterval();
+    var game = getTimeout(intervalID);
+
+    var outer = function (intervalID, game) {
+      var intervalID = intervalID;
+      var game = game;
       var inner =  function () {
-        // 로직 수행
-        console.log("로직 수행중!!");
-        if (--count < 0) {
-          alert("기회가 없습니다");
-        } else {
-          console.log('게임스타트!!');
-        }
+        console.log("game start!!");
+      };
+
+      inner.init = function () {
+        $('#test').text(20);
+        clearInterval(intervalID);
+        clearTimeout(game);
+
+        intervalID = getInterval();
+        game = getTimeout(intervalID);
       };
 
       return inner;
     };
 
-    var countCheck = outer();
+    var countCheck = outer(intervalID, game);
+
+
     $('#ok').on('click', function () {
-      console.log("test");
       countCheck();
+      countCheck.init();
     });
+
   });
 </script>
 </html>
