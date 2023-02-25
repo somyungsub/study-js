@@ -59,5 +59,6 @@ let t = Object.entries(obj).map((value,index, array) => {
 
 console.log(t);
 const sp = [{...obj}];
+console.log(obj);
 console.log(sp);
 
