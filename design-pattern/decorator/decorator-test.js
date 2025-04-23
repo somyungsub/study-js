@@ -6,13 +6,13 @@ function Computer(name) {
 
 Computer.prototype = {
   showPrice() {
-    console.log(this.name + ' total cost : ' + this.price);
+    console.log(`${this.name} ' total cost : '  ${this.price}`);
   },
   showParts() {
     this.parts.forEach(part => {
       console.log(part.name + ' cost : ' + part.price);
     });
-    console.log("total price : ", this.price);
+    console.log(`total price :  ${this.price}`);
   },
   decorate(part) {
     this.price += part.price;
@@ -27,7 +27,7 @@ function ComputerDecorator() {
 ComputerDecorator.prototype.decorateComputer = function(computer, partName) {
   if (this.decorateParts.hasOwnProperty(partName)) {
     computer.decorate(this.decorateParts[partName]);
-    console.log("Decorating " + computer.name + " with " + partName + " is decorated");
+    console.log(`"Decorating ${computer.name} with partName is decorated"`);
   }
   return computer;
 }
