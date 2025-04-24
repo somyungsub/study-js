@@ -7,7 +7,7 @@
 Function.prototype.memo = function () {
   const _this = this;
   const memo = {};
-  
+
   return function () {
     const args = JSON.stringify(arguments);
     let result;
