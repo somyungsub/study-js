@@ -5,7 +5,7 @@ console.log(user1);
 
 const test1 = user1.apply(user1,[{address:'테스트1', name:'이름', age: 100}]);
 const detail = user1({address: '서울시', name: 'sss', age: 30});
-const detail2 = user1({address: '서울시2', name: 'sss2', age: 40});
+const detail2 = user1({address: '서울시2', name: 'sss2', age: 40}, {id:'????'});
 printUser('test1', test1);
 printUser('detail-1', detail);
 printUser('detail-2', detail2);
@@ -22,9 +22,19 @@ printUser('test1', test1);
 printUser('detail-1', detail);
 printUser('detail-2', detail2);
 
+console.log("====== valid false")
+const userBaseFalse = UserBase({});
+const detailValidationFalse = userBaseFalse({});
+const userBaseFalse2 = UserBase({id:'ssosso', password:'1234#1234', email: 'ssss@naver.com'});
+const detailValidationFalse2 = userBaseFalse2({address:'',name: 'sss2', age: 40});
+
+printUser('detailValidationFalse', detailValidationFalse);
+printUser('detailValidationFalse2', detailValidationFalse2);
+
 function printUser(testName,detail) {
   console.log(`========================${testName}`);
   console.log(detail.getUserData());
   console.log(detail.getDetailData());
+  console.log(detail.validateData());
 }
 
