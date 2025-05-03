@@ -1,29 +1,28 @@
-function useTest(name, age) {
-  // 내부 랩핑, 공통화, 메모리 효율, --> class??
-  function UseTestProto() {
+// 로직구현이 불가함
+class UseTest {
+  constructor(name, age) {
     this.state = { name, age };
   }
 
-  UseTestProto.prototype.getName = function () {
+  getName() {
     return this.state.name;
-  };
-  UseTestProto.prototype.setName = function (name) {
+  }
+
+  setName(name) {
     this.state.name = name;
-  };
-  UseTestProto.prototype.getAge = function () {
+  }
+
+  getAge() {
     return this.state.age;
-  };
-  UseTestProto.prototype.setAge = function (age) {
+  }
+
+  setAge(age) {
     this.state.age = age;
-  };
-  // 여러 로직 ... 실행, hook 등
-
-  return new UseTestProto();
+  }
 }
+const useTest1 = new UseTest('sso', 30);
+const useTest2 = new UseTest('sss2', 25);
 
-
-const useTest1 = useTest('sss', 20);
-const useTest2 = useTest('sss2', 30);
 
 console.log(useTest1)
 console.log(useTest1.getName());

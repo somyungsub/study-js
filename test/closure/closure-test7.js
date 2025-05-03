@@ -1,29 +1,36 @@
-function useTest(name, age) {
-  // 내부 랩핑, 공통화, 메모리 효율, --> class??
-  function UseTestProto() {
+class UseTest {
+  constructor(name, age) {
     this.state = { name, age };
   }
 
-  UseTestProto.prototype.getName = function () {
+  getName() {
     return this.state.name;
-  };
-  UseTestProto.prototype.setName = function (name) {
-    this.state.name = name;
-  };
-  UseTestProto.prototype.getAge = function () {
-    return this.state.age;
-  };
-  UseTestProto.prototype.setAge = function (age) {
-    this.state.age = age;
-  };
-  // 여러 로직 ... 실행, hook 등
+  }
 
-  return new UseTestProto();
+  setName(name) {
+    this.state.name = name;
+  }
+
+  getAge() {
+    return this.state.age;
+  }
+
+  setAge(age) {
+    this.state.age = age;
+  }
+
+  static isNumber(value) {
+    return typeof value === 'number';
+  }
 }
 
+function useTest(name, age) {
+  return new UseTest(name, age);
+}
 
-const useTest1 = useTest('sss', 20);
-const useTest2 = useTest('sss2', 30);
+const useTest1 = useTest('sso', 30);
+const useTest2 = useTest('sss2', 25);
+
 
 console.log(useTest1)
 console.log(useTest1.getName());
@@ -55,3 +62,15 @@ useTest2.setName('useTest2 sss2');
 
 console.log(useTest1.getName());
 console.log(useTest2.getName());
+
+console.log("===================4 추가");
+UseTest.prototype.getName2 = function () {
+  return this.state.name + " getName2 추가!!";
+}
+
+console.log(useTest1.getName2());
+console.log(useTest2.getName2());
+
+
+console.log(UseTest.isNumber(useTest1.getName()));
+console.log(UseTest.isNumber(useTest1.getAge()));
