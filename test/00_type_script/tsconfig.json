@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                      // 생성되는 JS 버전 (Node.js 14+ 기준이면 ES2020 이상)
+    "module": "CommonJS",                     // Node.js 환경은 CommonJS 모듈 시스템 사용
+    "lib": ["ESNext"],                        // 최신 JS API 지원
+    "moduleResolution": "Node",               // 모듈 탐색 방식 (Node 스타일)
+    "strict": true,                           // 모든 타입 검사 엄격하게
+    "esModuleInterop": true,                   // CommonJS/ESModule 상호 운용성 허용
+    "skipLibCheck": true,                      // node_modules 타입 체크 무시 (속도 향상)
+    "forceConsistentCasingInFileNames": true,  // 파일명 대소문자 강제 (운영체제 간 오류 방지)
+    "experimentalDecorators": true,            // ✅ 데코레이터 문법 허용
+    "emitDecoratorMetadata": true,             // ✅ 데코레이터 타입 메타데이터 생성 (NestJS 등 필요)
+    "allowJs": true,                           // JS 파일도 같이 허용
+    "checkJs": false,                          // JS 파일 타입체크는 비활성화
+    "outDir": "./dist",                        // 컴파일 결과 폴더
+    "rootDir": "./src",                        // 소스 파일 기준 폴더
+    "baseUrl": ".",                            // 절대 경로 import 설정
+    "paths": {
+      "@/*": ["src/*"]                         // '@/폴더명' 으로 경로 단축 가능
+    },
+    "resolveJsonModule": true                  // .json 파일 import 가능
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
