@@ -1,11 +1,13 @@
 <script setup>
 import AppTest from "./views/app/AppTest.vue";
 import TickTest from "./views/tick/TickTest.vue";
+import ComposableTest from "./views/test/ComposableTest.vue";
 </script>
 
 <template>
 <!--  <AppTest/>-->
-  <TickTest/>
+<!--  <TickTest/>-->
+  <ComposableTest/>
 </template>
 
 <style scoped>
