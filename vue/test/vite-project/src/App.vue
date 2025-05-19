@@ -2,12 +2,16 @@
 import AppTest from "./views/app/AppTest.vue";
 import TickTest from "./views/tick/TickTest.vue";
 import ComposableTest from "./views/test/ComposableTest.vue";
+import WatchTest from "./views/watch/WatchTest.vue";
+import AsyncTest from "./views/app/AsyncTest.vue";
 </script>
 
 <template>
 <!--  <AppTest/>-->
 <!--  <TickTest/>-->
-  <ComposableTest/>
+<!--  <ComposableTest/>-->
+<!--  <WatchTest/>-->
+  <AsyncTest/>
 </template>
 
 <style scoped>

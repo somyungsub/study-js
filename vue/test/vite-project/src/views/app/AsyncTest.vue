@@ -5,7 +5,9 @@ console.log("start 1");
 
 Promise.resolve().then(value => console.log("promise전"));
 nextTick(() => {
-  Promise.resolve().then(() =>console.log("nextTick promise"))
+  console.log("nextTick promise 전");
+  Promise.resolve().then(() => console.log("nextTick promise"))
+  console.log("nextTick promise 후");
 });
 
 nextTick(() => {
