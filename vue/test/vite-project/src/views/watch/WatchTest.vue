@@ -30,6 +30,12 @@ function test() {
   console.log('=========== test end ');
 }
 
+function syncTest() {
+  console.log('=========== test start ');
+  _state.count.value++; // callStack -> 비동기처리 큐 (flushJob)
+  console.log('=========== test end ');
+}
+
 
 async function asyncTest() {
   console.log('=========== test start ');
@@ -61,8 +67,9 @@ async function testTick() {
 
 onMounted(() => {
   // test();
+  syncTest();
   // asyncTest();
-  testTick();
+  // testTick();
 })
 </script>
 
