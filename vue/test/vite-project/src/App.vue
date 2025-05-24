@@ -5,6 +5,8 @@ import ComposableTest from "./views/test/ComposableTest.vue";
 import WatchTest from "./views/watch/WatchTest.vue";
 import AsyncTest from "./views/app/AsyncTest.vue";
 import WatchTest2 from "./views/watch/WatchTest2.vue";
+import StoreTest from "./views/store/StoreTest.vue";
+import StoreTest2 from "./views/store/StoreTest2.vue";
 </script>
 
 <template>
@@ -12,8 +14,10 @@ import WatchTest2 from "./views/watch/WatchTest2.vue";
 <!--  <TickTest/>-->
 <!--  <ComposableTest/>-->
 <!--  <AsyncTest/>-->
-  <!--  <WatchTest/>-->
-  <WatchTest2/>
+<!--    <WatchTest/>-->
+<!--  <WatchTest2/>-->
+  <StoreTest/>
+  <StoreTest2/>
 </template>
 
 <style scoped>
