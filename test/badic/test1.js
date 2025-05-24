@@ -20,3 +20,16 @@ function sum(a, b) {
 }
 
 console.log(sum(1, 2));
+
+
+console.log((1).toFixed(2));
+console.log(Number(10.1234).toFixed(2));
+
+console.log(typeof Number(10.1234));
+
+console.log(Number.prototype);
+console.log(Number.constructor);
+console.log(Number.constructor.prototype);
+console.log(Object.constructor);
+console.log(Object.prototype);
+
