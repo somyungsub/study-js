@@ -7,6 +7,7 @@ import AsyncTest from "./views/app/AsyncTest.vue";
 import WatchTest2 from "./views/watch/WatchTest2.vue";
 import StoreTest from "./views/store/StoreTest.vue";
 import StoreTest2 from "./views/store/StoreTest2.vue";
+import PopupTest from "./views/popup/PopupTest.vue";
 </script>
 
 <template>
@@ -16,8 +17,9 @@ import StoreTest2 from "./views/store/StoreTest2.vue";
 <!--  <AsyncTest/>-->
 <!--    <WatchTest/>-->
 <!--  <WatchTest2/>-->
-  <StoreTest/>
-  <StoreTest2/>
+<!--  <StoreTest/>-->
+<!--  <StoreTest2/>-->
+  <PopupTest/>
 </template>
 
 <style scoped>
