@@ -2,7 +2,7 @@
 
 import {onMounted} from "vue";
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close']);
 const props = defineProps({
   usePopup: {
     type: Object,
@@ -12,7 +12,6 @@ const props = defineProps({
 
 function close() {
   emit('close');
-  props.usePopup.close();
 }
 
 onMounted(()=>{
@@ -25,7 +24,7 @@ onMounted(()=>{
   <div class="popup-mask">
     <div class="popup-box" :style="`width: ${props.usePopup.width}; height: ${props.usePopup.height}`">
       <h2 class="text">{{ props.usePopup.title }}</h2>
-      <slot />
+      <slot/>
       <button @click="close">닫기</button>
     </div>
   </div>
