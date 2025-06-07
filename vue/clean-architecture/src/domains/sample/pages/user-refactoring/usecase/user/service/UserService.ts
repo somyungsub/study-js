@@ -1,7 +1,7 @@
-import {type User} from "../../domain/entity/User.ts";
-import {userApi} from "../../infrastructure/api/userApi.ts";
-import type {UserQuery} from "./query/UserQuery.ts";
-import type {UserCommand} from "./command/UserCommand.ts";
+import {type User} from "../../../domain/entity/User.ts";
+import {userApi} from "../../../infrastructure/api/userApi.ts";
+import type {UserQuery} from "../UserQuery.ts";
+import type {UserCommand} from "../UserCommand.ts";
 
 class UserQueryService implements UserQuery {
   getUserDetailList(): Promise<User[]> {

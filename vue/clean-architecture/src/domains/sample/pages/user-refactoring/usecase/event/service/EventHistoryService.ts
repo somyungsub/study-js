@@ -1,7 +1,7 @@
-import type {EventHistoryQuery} from "./query/EventHistoryQuery.ts";
-import {type UserEventHistory} from "../../domain/entity/UserEventHistory.ts";
-import {eventHistoryApi} from "../../infrastructure/api/eventHistoryApi.ts";
-import type {EventHistoryCommand} from "./command/EventHistoryCommand.ts";
+import type {EventHistoryQuery} from "../EventHistoryQuery.ts";
+import {type UserEventHistory} from "../../../domain/entity/UserEventHistory.ts";
+import {eventHistoryApi} from "../../../infrastructure/api/eventHistoryApi.ts";
+import type {EventHistoryCommand} from "../EventHistoryCommand.ts";
 
 class EventHistoryService implements EventHistoryQuery {
   async fetchAllHistory(): Promise<UserEventHistory[]> {

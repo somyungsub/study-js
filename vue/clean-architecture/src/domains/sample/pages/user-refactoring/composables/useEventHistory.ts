@@ -1,6 +1,6 @@
 import {type Ref, ref} from "vue";
 import type {UserEventHistory} from "../domain/entity/UserEventHistory.ts";
-import {createService} from "../application/eventHistory/EventHistoryService.ts";
+import {createService} from "../usecase/event/service/EventHistoryService.ts";
 
 export type useEventHistoryType = {
   histories: Ref<any[]>;
