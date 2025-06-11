@@ -1,10 +1,11 @@
 import {GENDER, type Gender, USER_TYPES, type UserType} from "../constant/userTypes.ts";
+import {Email} from "../vo/Email.ts";
 
 export class User {
   constructor(
     readonly id: number,
     private _name: string,
-    private _email: string,
+    private _email: Email,
     private _gender: Gender,
     private _userType: UserType
   ) {
@@ -30,11 +31,22 @@ export class User {
   static from(dto: {
     id: number;
     name: string;
-    email: string;
+    email: Email;
     gender: Gender;
     userType: UserType;
   }): User {
     return new User(dto.id, dto.name, dto.email, dto.gender, dto.userType);
+  }
+
+  static testValue() {
+    const userId = Math.random() * 10000;
+    return User.from({
+      id:Number(userId.toFixed(0)),
+      name:'소명섭',
+      email: Email.fromDefault(),
+      gender:'M',
+      userType:'GENERAL'
+    })
   }
 
   toDto() {
@@ -51,9 +63,6 @@ export class User {
     if (!this.name || this.name.length === 0) {
       throw new Error('이름은 필수입니다.');
     }
-    if (!this.email.includes('@')) {
-      throw new Error('유효한 이메일 주소여야 합니다.');
-    }
     if (!GENDER.includes(this.gender)) {
       throw new Error('성별은 M 또는 F여야 합니다.');
     }
@@ -62,15 +71,8 @@ export class User {
     }
   }
 
-  static testValue() {
-    const userId = Math.random() * 10000;
-    return User.from({
-      id:Number(userId.toFixed(0)),
-      name:'홍길동',
-      email:'hong@example.com',
-      gender:'M',
-      userType:'GENERAL'
-    })
+  toString(): string {
+    return `${this.id} : [${this.name} : ${this.email.fullName()} : ${this.gender} : ${this.userType}]`;
   }
 }
 

@@ -19,7 +19,7 @@ onMounted(async () => {
     <h2>이벤트 히스토리-리팩토링</h2>
     <ul>
       <li v-for="history in useEventHistoryComp.histories.value" :key="history.eventId">
-        {{ history.eventId }} - {{ history.eventName }} - {{ history.createDate }}
+        {{useEventHistoryComp.toStringHistory(history)}}
       </li>
     </ul>
 

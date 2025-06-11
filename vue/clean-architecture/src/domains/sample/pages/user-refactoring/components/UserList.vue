@@ -18,7 +18,8 @@ onMounted(async () => {
     <h2>사용자 목록-리팩토링</h2>
     <ul>
       <li v-for="user in useUserComp.users.value" :key="user.id">
-        {{user.id}} - {{ user.name }} - {{ user.email }} - {{ user.gender }} - {{ user.userType }}
+<!--        {{useUserComp.toStringUser(user)}}-->
+        {{User.from(user).toString()}}
       </li>
     </ul>
 

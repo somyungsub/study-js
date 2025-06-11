@@ -23,7 +23,7 @@ export class UserEventHistory {
     return this.from({
       eventId:`${id.toFixed(0)}-event` ,
       eventName:'eventName@@',
-      createDate:new Date(),
+      createDate: new Date(),
     })
   }
 
@@ -34,4 +34,18 @@ export class UserEventHistory {
       createDate: this.createDate
     }
   }
+  toString(): string {
+    return `이벤트[${this.eventId}] >> 이벤트이름: ${this.eventName} 생성날짜: ${this.dateToText()}`;
+  }
+
+  // TODO
+  private dateToText(): string {
+    const d = this.createDate;
+    function pad(n:number): string {
+      return n < 10 ? '0' + n : String(n);
+    }
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} `
+      + `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  }
+
 }

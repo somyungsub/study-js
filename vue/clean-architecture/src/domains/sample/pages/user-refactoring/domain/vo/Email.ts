@@ -8,7 +8,9 @@ export class Email {
   }
 
   static fromDefault(): Email {
-    return this.from({host: 'hong2', domain: 'example.com'});
+
+    const random = (Math.random()*100).toFixed(0);
+    return this.from({host: `sso-${random}`, domain: 'example.com'});
   }
 
   static from(dto: {

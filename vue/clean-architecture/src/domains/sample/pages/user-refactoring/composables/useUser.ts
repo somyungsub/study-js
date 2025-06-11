@@ -1,4 +1,4 @@
-import {type User} from "../domain/entity/User.ts";
+import {User} from "../domain/entity/User.ts";
 import {type Ref, ref} from "vue";
 import {createService} from "../usecase/user/service/UserService.ts";
 
@@ -9,6 +9,7 @@ export type useUserType = {
   fetchAllUser(): Promise<void>;
   getUserDetailList(): Promise<User[]>;
   getUserCount(): number;
+  toStringUser(user: any): string;
 };
 
 export function useUser(): useUserType {
@@ -39,12 +40,18 @@ export function useUser(): useUserType {
     return _state.users.value.length;
   }
 
+  function toStringUser(user: any): string {
+    const userEntity = User.from(user);
+    return userEntity.toString();
+  }
+
   return {
     users: _state.users,
     fetchAllUser,
     saveUser,
     getUserDetailList,
     validateUser,
-    getUserCount
+    getUserCount,
+    toStringUser
   };
 }

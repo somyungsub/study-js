@@ -1,5 +1,5 @@
 import {type Ref, ref} from "vue";
-import type {UserEventHistory} from "../domain/entity/UserEventHistory.ts";
+import {UserEventHistory} from "../domain/entity/UserEventHistory.ts";
 import {createService} from "../usecase/event/service/EventHistoryService.ts";
 
 export type useEventHistoryType = {
@@ -7,6 +7,7 @@ export type useEventHistoryType = {
   fetchAllHistory(): Promise<void>;
   saveHistory(history: UserEventHistory): Promise<void>;
   getEventHistoryCount(): number;
+  toStringHistory(history: any): string;
 };
 
 export function useEventHistory(): useEventHistoryType {
@@ -25,13 +26,19 @@ export function useEventHistory(): useEventHistoryType {
     await fetchAllHistory();
   }
 
+  function toStringHistory(history: any): string {
+    const historyEntity = UserEventHistory.from(history);
+    return historyEntity.toString();
+  }
+
   return {
     getEventHistoryCount(): number {
       return _state.histories.value.length;
     },
     histories: _state.histories,
     fetchAllHistory,
-    saveHistory
+    saveHistory,
+    toStringHistory
   };
 
 }
