@@ -12,20 +12,17 @@ createPopupHookManager.on(HOOK_NAME.AFTER_CLOSE, () => console.log('After closin
 
 // 팝업 열기
 console.log("===========");
-// @ts-ignore
-await popup.openPopup();
+popup.openPopup();
 
 // 팝업 열기
 console.log("===========");
-// @ts-ignore
-await popup.openPopupAround();
+popup.openPopupAround();
 
 // 팝업 닫기
 console.log("===========");
-// @ts-ignore
-await popup.closePopup();
+popup.closePopup();
 
 // 팝업 닫기
 console.log("===========");
-// @ts-ignore
-await popup.closePopupBoth();
+popup.closePopupBoth();
+

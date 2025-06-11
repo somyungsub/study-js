@@ -7,23 +7,23 @@ import {Around} from "@/decorator/Around";
 export class PopupAop {
 
     @Before(HOOK_NAME.BEFORE_OPEN)
-    async openPopup() {
+    openPopup() {
         console.log('openPopup before 실행');
     }
 
     @Around({ before: HOOK_NAME.BEFORE_OPEN, after: HOOK_NAME.AFTER_OPEN})
-    async openPopupAround() {
+    openPopupAround() {
         console.log('openPopup around 실행');
     }
 
     @After(HOOK_NAME.AFTER_CLOSE)
-    async closePopup() {
+    closePopup() {
         console.log('closePopup logic 실행');
     }
 
     @After(HOOK_NAME.AFTER_CLOSE)
     @Before(HOOK_NAME.BEFORE_CLOSE)
-    async closePopupBoth() {
+    closePopupBoth() {
         console.log('closePopup logic 실행');
     }
 }
