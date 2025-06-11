@@ -1,3 +1,8 @@
+import {ToString} from "../../../../../../common/core/decorator/ToString.ts";
+
+@ToString([
+  {'createDate': (th: UserEventHistory) => th.dateToText()}
+])
 export class UserEventHistory {
   constructor(
     readonly eventId: string,
@@ -34,9 +39,9 @@ export class UserEventHistory {
       createDate: this.createDate
     }
   }
-  toString(): string {
-    return `이벤트[${this.eventId}] >> 이벤트이름: ${this.eventName} 생성날짜: ${this.dateToText()}`;
-  }
+  // toString(): string {
+  //   return `이벤트[${this.eventId}] >> 이벤트이름: ${this.eventName} 생성날짜: ${this.dateToText()}`;
+  // }
 
   // TODO
   private dateToText(): string {

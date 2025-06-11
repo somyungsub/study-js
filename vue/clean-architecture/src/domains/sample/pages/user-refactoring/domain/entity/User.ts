@@ -1,6 +1,11 @@
 import {GENDER, type Gender, USER_TYPES, type UserType} from "../constant/userTypes.ts";
 import {Email} from "../vo/Email.ts";
+import {ToString} from "../../../../../../common/core/decorator/ToString.ts";
 
+// @ToString([
+//   {'_email': (th: User) => th.email.fullName()}
+// ])
+@ToString()
 export class User {
   constructor(
     readonly id: number,
@@ -71,9 +76,9 @@ export class User {
     }
   }
 
-  toString(): string {
-    return `${this.id} : [${this.name} : ${this.email.fullName()} : ${this.gender} : ${this.userType}]`;
-  }
+  // toString(): string {
+  //   return `${this.id} : [${this.name} : ${this.email.fullName()} : ${this.gender} : ${this.userType}]`;
+  // }
 }
 
 
