@@ -15,9 +15,9 @@ onMounted(async () => {
 
 <template>
   <div>
-    <h2>사용자 목록-리팩토링</h2>
+    <h2>👤 사용자 목록 - 리팩토링</h2>
     <ul>
-      <li v-for="user in useUserComp.users.value" :key="user.id">
+      <li v-for="user in useUserComp.users.value" :key="user.id" class="list-item">
         {{useUserComp.toStringUser(user)}}
 <!--
 TODO 아래 같은 형식에서 만약 . 앞뒤로 라인을 추가해달라는 요구사항 발생 -> function으로 이 컴포넌트에서 처리하거나
@@ -31,11 +31,14 @@ template 영역에 추가해야하거나 해야하는데
       </li>
     </ul>
 
-    <h3>새 사용자 추가-리팩토링</h3>
-    <button @click="useUserComp.saveUser(User.testValue())">저장</button>
+    <button
+        class="action-btn"
+        @click="useUserComp.saveUser(User.testValue())">
+      사용자 추가 (ID 랜덤생성 : 같은 ID 존재시 추가 안됨)
+    </button>
   </div>
 </template>
 
 <style scoped>
-
+@import "UserRefactoringChild.css";
 </style>

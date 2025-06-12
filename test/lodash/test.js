@@ -50,3 +50,34 @@ let number = _.reduce([1, 2, 3, 4, 5], (prev, curr) => {
 });
 
 console.log(number);
+
+const aaaa = [1,2,3,4,5];
+const aaaa2 = ['a','b','c','d','e'];
+const aaaa3 = [true,true,false,false,true];
+const zip = _.zip(aaaa, aaaa2,aaaa3);
+console.log("zip", zip);
+
+const arr1 = [
+  {key:1, name: 'ttt'},
+  {key:2, name: 'ttt2'},
+  {key:3, name: 'ttt3'}
+]
+
+const arr2 = [
+  {key2:11, name2: '333ttt'},
+  {key2:12, name2: '333ttt2'},
+  {key2:13, name2: '333ttt3'}
+]
+const zip1 = _.zip(arr1, arr2);
+console.log(zip1);
+
+
+const obj1 = {
+  key:1111, name:'tttt'
+}
+const obj2 = {
+  key2:2222, name2:'222tttt'
+}
+
+const zip2 = _.zip(obj1, obj2);
+console.log(zip2);

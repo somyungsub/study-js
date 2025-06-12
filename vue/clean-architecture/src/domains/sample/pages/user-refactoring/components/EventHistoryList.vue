@@ -16,18 +16,20 @@ onMounted(async () => {
 
 <template>
   <div>
-    <h2>이벤트 히스토리-리팩토링</h2>
+    <h2>📜 이벤트 히스토리 - 리팩토링</h2>
     <ul>
-      <li v-for="history in useEventHistoryComp.histories.value" :key="history.eventId">
+      <li v-for="history in useEventHistoryComp.histories.value" :key="history.eventId" class="list-item">
         {{useEventHistoryComp.toStringHistory(history)}}
       </li>
     </ul>
 
-    <h3>이벤트 추가-리팩토링</h3>
-    <button @click="useEventHistoryComp.saveHistory(UserEventHistory.testValue())">저장</button>
+    <button
+        class="action-btn"
+        @click="useEventHistoryComp.saveHistory(UserEventHistory.testValue())">
+      이벤트 추가
+    </button>
   </div>
 </template>
-
 <style scoped>
-
+@import "UserRefactoringChild.css";
 </style>

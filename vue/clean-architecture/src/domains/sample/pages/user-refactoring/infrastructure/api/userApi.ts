@@ -13,7 +13,14 @@ export const userApi = {
     return Promise.resolve(userRepository);
   },
   save(user: User): Promise<number> {
+    if (includeUser(user)) {
+      return Promise.resolve(0);
+    }
     userRepository.push(user);
     return Promise.resolve(user.id);
   }
+}
+
+function includeUser(user) {
+  return userRepository.map(value => value.id).includes(user.id);
 }

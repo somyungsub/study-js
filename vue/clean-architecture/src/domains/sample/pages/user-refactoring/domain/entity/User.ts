@@ -2,10 +2,10 @@ import {GENDER, type Gender, USER_TYPES, type UserType} from "../constant/userTy
 import {Email} from "../vo/Email.ts";
 import {ToString} from "../../../../../../common/core/decorator/ToString.ts";
 
-// @ToString([
-//   {'_email': (th: User) => th.email.fullName()}
-// ])
-@ToString()
+@ToString([
+  {'_email': (th: User) => th.email.fullName()}
+])
+// @ToString()
 export class User {
   constructor(
     readonly id: number,
@@ -44,10 +44,10 @@ export class User {
   }
 
   static testValue() {
-    const userId = Math.random() * 10000;
+    const userId = (Math.random() * 30).toFixed(0);
     return User.from({
-      id:Number(userId.toFixed(0)),
-      name:'소명섭',
+      id:Number(userId),
+      name:`ss리팩토링-${userId}`,
       email: Email.fromDefault(),
       gender:'M',
       userType:'GENERAL'

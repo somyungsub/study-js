@@ -1,12 +1,3 @@
-[//]: # (# Vue 3 + TypeScript + Vite)
-
-[//]: # ()
-[//]: # (This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs]&#40;https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup&#41; to learn more.)
-
-[//]: # ()
-[//]: # (Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide]&#40;https://vuejs.org/guide/typescript/overview.html#project-setup&#41;.)
-
-
 ```
 src/
 ├── domains/
@@ -36,3 +27,16 @@ src/
 ├── store/                      # pinia 혹은 상태 관리
 └── main.ts
 ```
+
+- presentation,infrastructure -> usecase -> entity 영역
+- 헥사고날아키텍처 : adapter(어댑터, in,out) -> application(응용, port-in/out) -> domain(도메인)
+- vue3에서는
+  - 제어흐름
+    - 제어흐름 in : page.vue(presentation) -> composable(ViewModel) -> usecase (in,out) -> entity(domain)
+    - 제어흐름 out : api (infra) -> usecase -> (entity) -> composable -> page.vue(presentation)
+- 의존방향
+    ```
+    제어흐름
+    page.vue -> composable -> usecase in port -> 구현체 (서비스) -> entity
+    page.vue <- composable <- usecase in port <- 구현체 (서비스) -> out port <- 구현체 (infra api)
+    ```

@@ -24,8 +24,14 @@ export function useUser(): useUserType {
   }
 
   async function saveUser(user: User): Promise<void> {
-    await command.saveUser(user);
+    const saveUserId = await command.saveUser(user);
     await fetchAllUser();
+
+    if ([5,10,15,20].includes(saveUserId)) {
+      setTimeout(()=>{
+        alert(`사용자 ID [${user.id}] 가 추가되었습니다.\nID : 5,10,15,20 추가시 \n=> 3.주문목록에서 가격갱신 해보기`)
+      },100)
+    }
   }
 
   function getUserDetailList(): Promise<User[]> {
