@@ -9,13 +9,11 @@ import type {EventHistoryCommand} from "../command/EventHistoryCommand.ts";
 
 class UserQueryService implements UserQuery, EventHistoryQuery {
   getUserDetailList(): Promise<User[]> {
-    console.log("getUserDetailList");
     return Promise.resolve([]);
   }
 
   async getUserList(): Promise<User[]> {
     return await userApi.fetchUsers().then((users: User[]) => {
-      console.log("getUserList : users : ", users);
       return users;
     });
   }
