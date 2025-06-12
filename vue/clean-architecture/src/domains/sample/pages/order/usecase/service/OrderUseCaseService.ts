@@ -1,11 +1,14 @@
 import type {Order} from "../../domain/entity/Order.ts";
 import type {OrderUseCase} from "../OrderUseCase.ts";
 import type {UserQuery} from "../../../user-refactoring/usecase/user/UserQuery.ts";
-import {createService as createUserService} from "../../../user-refactoring/usecase/user/service/UserService.ts";
 import {orderApi} from "../../infra/api/orderApi.ts";
+import {Service} from "../../../../../../common/core/decorator/Service.ts";
+import {ServiceRegistry} from "../../../../../../common/core/di/ServiceRegistry.ts";
 
+@Service
 class OrderUseCaseService implements OrderUseCase {
-  constructor(private userQuery: UserQuery) {
+  constructor(private userQueryService: UserQuery) {
+    this.userQueryService = ServiceRegistry.get<UserQuery>("UserQueryService"); // DI
   }
 
   async fetchAllOrder(): Promise<Order[]> {
@@ -13,13 +16,12 @@ class OrderUseCaseService implements OrderUseCase {
   }
 
   async joinUserOrder(userId: number): Promise<User> {
-    return await this.userQuery.getUserList().then((userList) => {
+    return await this.userQueryService.getUserList().then((userList) => {
       return userList.find(user => user.id === userId);
     });
   }
 }
 
-// TODO 서비스 레지스트리로 di 하도록 수정, @Service 애노테이션 활용해서..
 export const createService = () => ({
-  useCase: new OrderUseCaseService(createUserService().query),
+  useCase: ServiceRegistry.get<OrderUseCase>("OrderUseCaseService")
 });

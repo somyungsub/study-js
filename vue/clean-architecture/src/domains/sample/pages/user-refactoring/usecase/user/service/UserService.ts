@@ -6,7 +6,10 @@ import type {UserUseCase} from "../UserUseCase.ts";
 import {Around} from "../../../../../../../common/core/decorator/Around.ts";
 import {Before} from "../../../../../../../common/core/decorator/Before.ts";
 import {After} from "../../../../../../../common/core/decorator/After.ts";
+import {Service} from "../../../../../../../common/core/decorator/Service.ts";
+import {ServiceRegistry} from "../../../../../../../common/core/di/ServiceRegistry.ts";
 
+@Service
 class UserQueryService implements UserQuery {
   getUserDetailList(): Promise<User[]> {
     return Promise.resolve([]);
@@ -19,16 +22,18 @@ class UserQueryService implements UserQuery {
   }
 }
 
+@Service
 class UserCommandService implements UserCommand {
   async saveUser(user: User): Promise<number> {
     return await userApi.save(user);
   }
 }
 
-class UserUseCaseImpl implements UserUseCase {
+@Service
+class UserUseCaseService implements UserUseCase {
   @Around({
-    before: () => "****",
-    after: (user:User)=> ` | $$$$ after대문자::${user.name.toUpperCase()}`
+    before: () => "**** ",
+    after: (user: User)=> ` | $$$$ after대문자::${user.name.toUpperCase()}`
   })
   // @Before()
   // @After((user: User) => user.id.toFixed(1))
@@ -38,7 +43,10 @@ class UserUseCaseImpl implements UserUseCase {
 }
 
 export const createService = () => ({
-  query: new UserQueryService(),
-  command: new UserCommandService(),
-  useCase: new UserUseCaseImpl(),
+  query: ServiceRegistry.get<UserQuery>("UserQueryService"),
+  command: ServiceRegistry.get<UserCommandService>("UserCommandService"),
+  useCase: ServiceRegistry.get<UserUseCase>("UserUseCaseService"),
+  // query: new UserQueryService(),
+  // command: new UserCommandService(),
+  // useCase: new UserUseCaseService(),
 });

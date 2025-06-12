@@ -35,7 +35,7 @@ onMounted(() => {
   <UserOrderList @composable="(composable) => setComposable(composable, 'userOrder')" />
 
   <div class="info-card">
-    <h2>📦 상위 테스트 (주문/유저별 관련)  </h2>
+    <h2>📦 상위 테스트 -OrderPage.vue (주문/유저별 관련)  </h2>
 
     <div class="info-row">
       <div class="label">
