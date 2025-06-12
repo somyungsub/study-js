@@ -6,7 +6,10 @@ import type {EventHistoryQuery} from "../query/EventHistoryQuery.ts";
 import {type UserEventHistory} from "../../domain/entity/UserEventHistory.ts";
 import {eventHistoryApi} from "../../infrastructure/api/eventHistoryApi.ts";
 import type {EventHistoryCommand} from "../command/EventHistoryCommand.ts";
+import {Service} from "../../../../../../common/core/decorator/Service.ts";
+import {ServiceRegistry} from "../../../../../../common/core/di/ServiceRegistry.ts";
 
+@Service("UserQueryServiceDefault")
 class UserQueryService implements UserQuery, EventHistoryQuery {
   getUserDetailList(): Promise<User[]> {
     return Promise.resolve([]);
@@ -36,6 +39,8 @@ class UserCommandService implements UserCommand, EventHistoryCommand {
 }
 
 export const createUserService = () => ({
-  query: new UserQueryService(),
+  // query: new UserQueryService(),
+  // query: ServiceRegistry.get<UserQuery | EventHistoryQuery>("UserQueryServiceDefault"),
+  query: ServiceRegistry.get<UserQuery & EventHistoryQuery>("UserQueryServiceDefault") ,
   command: new UserCommandService(),
 });
