@@ -31,12 +31,17 @@ class UserCommandService implements UserCommand {
 
 @Service
 class UserUseCaseService implements UserUseCase {
+  toStringUser(user: User): string {
+    return user.toString();
+  }
+}
+
+@Service
+class UserUseCaseAopService implements UserUseCase {
   @Around({
     before: () => "**** ",
     after: (user: User)=> ` | $$$$ after대문자::${user.name.toUpperCase()}`
   })
-  // @Before()
-  // @After((user: User) => user.id.toFixed(1))
   toStringUser(user: User): string {
     return user.toString();
   }
@@ -45,7 +50,9 @@ class UserUseCaseService implements UserUseCase {
 export const createService = () => ({
   query: ServiceRegistry.get<UserQuery>("UserQueryService"),
   command: ServiceRegistry.get<UserCommandService>("UserCommandService"),
-  useCase: ServiceRegistry.get<UserUseCase>("UserUseCaseService"),
+  useCase: ServiceRegistry.get<UserUseCase>("UserUseCaseAopService"),   // AOP 기능 추가 된 서비스
+  // useCase: ServiceRegistry.get<UserUseCase>("UserUseCaseService"),   // 기본 기존 서비스
+
   // query: new UserQueryService(),
   // command: new UserCommandService(),
   // useCase: new UserUseCaseService(),
