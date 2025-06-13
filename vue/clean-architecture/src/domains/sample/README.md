@@ -30,7 +30,7 @@ user-refactoring/
 │
 ├── domain/                        # 도메인 모델 (Entity, VO, Enum 등)
 │   ├── constant/                  # 상수, 타입, Enum 등
-│   │   └── userTypes.ts
+│   │   └── UserTypes.ts
 │   ├── entity/
 │   │   ├── User.ts
 │   │   └── UserEventHistory.ts
