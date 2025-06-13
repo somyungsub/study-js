@@ -1,9 +1,7 @@
 /*
-  실행명령어
-    - npx node create-domain-folders.cjs 도메인명
-      - 타겟 경로 : src/domains/${도메인명}
-
-    - 도메인 생성 예 : npx node create-domain-folders.cjs sample
+    1.도메인 생성 예
+    - npx node create-domain-folders.cjs 도메인 -> 타겟 경로 : src/domains/${도메인}
+      - 실행명령어 : npx node create-domain-folders.cjs sample
       - 생성 경로 예 : src/domains/sample
       - 하위 폴더 생성 (관리단위)
           'stores',
@@ -11,7 +9,8 @@
           'utils',
           'components'
 
-    - 하위도메인 생성 예 : npx node create-domain-folders.cjs sample user
+    2.하위도메인 생성 예 : npx node create-domain-folders.cjs 도메인 하위도메인 -> 타겟 경로 : src/domains/${도메인}/modules/${하위도메인}
+      - 실행명령어 : npx node create-domain-folders.cjs sample user
       - 생성 경로 예 : src/domains/sample/modules/user
       - 하위 폴더 생성 (계층)
           'page',
@@ -24,8 +23,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const domainName = process.argv[2];  // sample
-const moduleName = process.argv[3];  // user
+const domainName = process.argv[2];  // 예) 도메인 : sample
+const moduleName = process.argv[3];  // 예) 하위도메인 : user
 
 if (!domainName) {
   console.error(`❌ 인자 누락:
