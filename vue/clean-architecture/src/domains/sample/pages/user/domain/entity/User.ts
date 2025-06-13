@@ -1,4 +1,4 @@
-import {GENDER, type Gender, USER_TYPES, type UserType} from "../constant/userTypes.ts";
+import {GENDER, type Gender, USER_TYPES, type UserType} from "../constant/UserTypes.ts";
 
 export class User {
   constructor(

@@ -1,4 +1,4 @@
-import {GENDER, type Gender, USER_TYPES, type UserType} from "../constant/userTypes.ts";
+import {GENDER, type Gender, USER_TYPES, type UserType} from "../constant/UserTypes.ts";
 import {Email} from "../vo/Email.ts";
 import {ToString} from "../../../../../../common/core/decorator/ToString.ts";
 

@@ -4,14 +4,14 @@ import type {UserEventHistory} from "../domain/entity/UserEventHistory.ts";
 import {type Ref, ref} from "vue";
 
 type useUserType = {
+  users: Ref<any[]>;
+  histories: Ref<any[]>;
   validateUser(userViewData: any): void;
   saveUser(user: User): Promise<void>
   fetchAllUser(): Promise<void>;
   getUserDetailList(): Promise<User[]>;
   fetchAllHistory(): Promise<void>;
   saveHistory(history: UserEventHistory): Promise<void>;
-  users: Ref<any[]>;
-  histories: Ref<any[]>;
 };
 
 export function useUser(): useUserType {

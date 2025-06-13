@@ -1,5 +1,5 @@
 import {User} from "../../domain/entity/User.ts";
-import {GENDER, USER_TYPES} from "../../domain/constant/userTypes.ts";
+import {GENDER, USER_TYPES} from "../../domain/constant/UserTypes.ts";
 
 // 유저
 const userRepository: User[] = [
