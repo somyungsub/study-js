@@ -64,18 +64,32 @@ export class User {
   }
 
   validate(): void {
-    if (!this.name || this.name.length === 0) {
-      throw new Error('이름은 필수입니다.');
-    }
-    if (!GENDER.includes(this.gender)) {
-      throw new Error('성별은 M 또는 F여야 합니다.');
-    }
-    if (!USER_TYPES.includes(this.userType)) {
-      throw new Error(`userType은 다음 중 하나여야 합니다: ${USER_TYPES.join(', ')}`);
-    }
-  }
+    const ensure = (condition: boolean, message: string) => {
+      if (condition) {
+        alert(message);
+        throw new Error(message);
+      }
+    };
 
-  // toString(): string {
-  //   return `${this.id} : [${this.name} : ${this.email.fullName()} : ${this.gender} : ${this.userType}]`;
-  // }
+    ensure(
+      !this.name || this.name.length === 0,
+      '이름은 필수입니다.'
+    );
+
+    ensure(
+      !GENDER.includes(this.gender),
+      [
+        `gender 입력값: ${this.gender}`,
+        `gender는 다음 중 하나여야 합니다: ${GENDER}`
+      ].join('\n')
+    );
+
+    ensure(
+      !USER_TYPES.includes(this.userType),
+      [
+        `userType 입력값: ${this.userType}`,
+        `userType은 다음 중 하나여야 합니다: ${USER_TYPES}`
+      ].join('\n')
+    );
+  }
 }

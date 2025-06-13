@@ -1,53 +1,93 @@
-import {type User} from "../domain/entity/User.ts";
-import {createUserService} from "../application/service/UserService.ts";
-import type {UserEventHistory} from "../domain/entity/UserEventHistory.ts";
 import {type Ref, ref} from "vue";
+import {userApi} from "../api/userApi.ts";
+import {eventHistoryApi} from "../api/eventHistoryApi.ts";
+
+
+enum USER_TYPE {
+  GENERAL = 'GENERAL',
+  ADMIN = 'ADMIN'
+}
+
+enum GENDER_TYPE {
+  FEMALE = 'F',
+  MALE = "M",
+}
 
 type useUserType = {
   users: Ref<any[]>;
   histories: Ref<any[]>;
   validateUser(userViewData: any): void;
-  saveUser(user: User): Promise<void>
+  saveUser(user: any): Promise<void>
   fetchAllUser(): Promise<void>;
-  getUserDetailList(): Promise<User[]>;
+  getUserDetailList(): Promise<any[]>;
   fetchAllHistory(): Promise<void>;
-  saveHistory(history: UserEventHistory): Promise<void>;
+  saveHistory(history: any): Promise<void>;
 };
 
 export function useUser(): useUserType {
-  const {query, command} = createUserService();
   const _state = {
     users: ref<any[]>([]),
     histories: ref<any[]>([])
   };
 
   async function fetchAllUser(): Promise<void> {
-    const userList = await query.getUserList();
-    _state.users.value = userList.map(user => user.toDto());
+    await userApi.fetchUsers().then((users: any[]) => {
+      _state.users.value = [...users];
+    });
   }
 
-  async function saveUser(user: User): Promise<void> {
-    await command.saveUser(user);
+  async function saveUser(user: any): Promise<void> {
+    validateUser(user);
+    await userApi.save(user);
     await fetchAllUser();
   }
 
-  function getUserDetailList(): Promise<User[]> {
-    return query.getUserDetailList();
+  // TODO
+  function getUserDetailList(): Promise<any[]> {
+    return Promise.resolve([]);
   }
 
   async function fetchAllHistory(): Promise<void> {
-    const histories = await query.fetchAllHistory();
-    _state.histories.value = histories.map(history => history.toDto());
+    await eventHistoryApi.fetchAllUserEventHistory().then((histories: any[]) => {
+      _state.histories.value = [...histories];
+    });
   }
 
-  async function saveHistory(history: UserEventHistory): Promise<void> {
-    await command.save(history);
+  async function saveHistory(history: any): Promise<void> {
+    await eventHistoryApi.save(history);
     await fetchAllHistory();
   }
 
   function validateUser(userViewData: any): void {
-    console.log(userViewData);
+    const ensure = (condition: boolean, message: string) => {
+      if (condition) {
+        alert(message);
+        throw new Error(message);
+      }
+    };
+
+    ensure(
+      !userViewData.name || userViewData.name.length === 0,
+      '이름은 필수입니다.'
+    );
+
+    ensure(
+      !Object.values(GENDER_TYPE).includes(userViewData.gender),
+      [
+        `gender 입력값: ${userViewData.gender}`,
+        `gender는 다음 중 하나여야 합니다: ${Object.values(GENDER_TYPE).join(', ')}`
+      ].join('\n')
+    );
+
+    ensure(
+      !Object.values(USER_TYPE).includes(userViewData.userType),
+      [
+        `userType 입력값: ${userViewData.userType}`,
+        `userType은 다음 중 하나여야 합니다: ${Object.values(USER_TYPE).join(', ')}`
+      ].join('\n')
+    );
   }
+
 
   return {
     users: _state.users,

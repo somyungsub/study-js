@@ -1,10 +1,28 @@
 <script setup lang="ts">
 import {onMounted} from 'vue';
 import {useUser} from './composables/useUser';
-import {User} from './domain/entity/User';
-import {UserEventHistory} from "./domain/entity/UserEventHistory.ts";
 
 const useUserComp = useUser();
+
+function testValueUser(): any {
+  const userId = (Math.random() * 30).toFixed(0);
+  return {
+    id: Number(userId),
+    name: `ss리팩토링-${userId}`,
+    email: `abc-${userId}@abc.com`,
+    gender: 'M',
+    userType: 'GENERAL'
+  }
+}
+
+function testValueHistory(): any {
+  const id = Math.random() * 10000;
+  return {
+    eventId: `${id.toFixed(0)}-event`,
+    eventName: 'eventName@@',
+    createDate: new Date(),
+  };
+}
 
 onMounted(async () => {
   await useUserComp.fetchAllUser();
@@ -22,7 +40,7 @@ onMounted(async () => {
       </li>
     </ul>
 
-    <button class="action-btn" @click="useUserComp.saveUser(User.testValue())">사용자 추가</button>
+    <button class="action-btn" @click="useUserComp.saveUser(testValueUser())">사용자 추가</button>
   </div>
 
   <div class="section">
@@ -33,7 +51,7 @@ onMounted(async () => {
       </li>
     </ul>
 
-    <button class="action-btn" @click="useUserComp.saveHistory(UserEventHistory.testValue())">이벤트 추가</button>
+    <button class="action-btn" @click="useUserComp.saveHistory(testValueHistory())">이벤트 추가</button>
   </div>
 </template>
 
@@ -45,7 +63,7 @@ onMounted(async () => {
   padding: 24px;
   border-radius: 10px;
   margin-bottom: 24px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', sans-serif;
 }
 
