@@ -1,48 +1,66 @@
 /*
   실행명령어
-    - npx node create-domain-folders.cjs 도메인명 모듈명(하위도메인)
-      - 타겟 경로 : src/domains/${도메인명}/modules/${모듈명}
+    - npx node create-domain-folders.cjs 도메인명
+      - 타겟 경로 : src/domains/${도메인명}
 
-    - 예 : npx node create-domain-folders.cjs sample user
+    - 도메인 생성 예 : npx node create-domain-folders.cjs sample
+      - 생성 경로 예 : src/domains/sample
+      - 하위 폴더 생성 (관리단위)
+          'stores',
+          'modules',
+          'utils',
+          'components'
+
+    - 하위도메인 생성 예 : npx node create-domain-folders.cjs sample user
       - 생성 경로 예 : src/domains/sample/modules/user
-      - 하위 폴더(계층) 생성
+      - 하위 폴더 생성 (계층)
           'page',
           'composable',
           'domain',
           'application',
           'infrastructure',
- */
+*/
+
 const fs = require('fs');
 const path = require('path');
 
-const domainPath = process.argv[2]; // ex) sample
-const moduleName = process.argv[3]; // ex) user
-if (!domainPath || !moduleName) {
-  console.error('❌ 인자 누락: 예) npx node create-domain-folders.js');
+const domainName = process.argv[2];  // sample
+const moduleName = process.argv[3];  // user
+
+if (!domainName) {
+  console.error(`❌ 인자 누락:
+  ▶︎ 인자 1개: npx node create-folders.cjs sample
+    → src/domains/sample + [stores, modules, utils, components]
+
+  ▶︎ 인자 2개: npx node create-folders.cjs sample user
+    → src/domains/sample/modules/user + [page, composable, domain, application, infrastructure]
+  `);
   process.exit(1);
 }
 
-// Root 기준에서 src/domains/{argPath}
-const basePath = path.join(process.cwd(), 'src', 'domains', domainPath, 'modules', moduleName);
-const folders = [
-  'page',
-  'composable',
-  'domain',
-  'application',
-  'infrastructure',
-];
+// 기준 경로
+const basePath = moduleName
+  ? path.join(process.cwd(), 'src', 'domains', domainName, 'modules', moduleName)
+  : path.join(process.cwd(), 'src', 'domains', domainName);
 
+// 생성할 하위 폴더
+const folders = moduleName
+  ? ['page', 'composable', 'domain', 'application', 'infrastructure']
+  : ['stores', 'modules', 'utils', 'components'];
+
+// 이미 있으면 경고
 if (fs.existsSync(basePath)) {
-  console.error(`❌ ${domainPath} 폴더가 이미 존재합니다: ${basePath}`);
+  console.error(`❌ 이미 존재합니다: ${basePath}`);
   process.exit(1);
 }
 
-// 도메인 하위 루트 만들기
+// 생성
 fs.mkdirSync(basePath, {recursive: true});
-
-// 6계층 하위 폴더 만들기
-folders.forEach(dir => {
-  fs.mkdirSync(path.join(basePath, dir));
+folders.forEach(folder => {
+  fs.mkdirSync(path.join(basePath, folder));
 });
 
-console.log(`✅ '${domainPath}' 도메인 계층이 생성되었습니다: ${basePath}`);
+console.log(`✅ 생성 완료:
+${basePath}
+ ├─ ${folders.join('\n ├─ ')}
+`);
