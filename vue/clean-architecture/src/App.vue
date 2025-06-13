@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import UserPage from "./domains/sample/pages/user/UserPage.vue";
-import UserPageRefactoring from "./domains/sample/pages/user-refactoring/UserPageRefactoring.vue";
-import OrderPage from "./domains/sample/pages/order/OrderPage.vue";
+import UserPage from "./domains/sample/modules/user/page/UserPage.vue";
+import UserPageRefactoring from "./domains/sample/modules/user-refactoring/page/UserPageRefactoring.vue";
+import OrderPage from "./domains/sample/modules/order/page/OrderPage.vue";
 </script>
 
 <template>
