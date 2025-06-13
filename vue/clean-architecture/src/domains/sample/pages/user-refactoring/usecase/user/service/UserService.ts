@@ -1,5 +1,4 @@
 import {type User} from "../../../domain/entity/User.ts";
-import {userApi} from "../../../infrastructure/api/userApi.ts";
 import type {UserQuery} from "../UserQuery.ts";
 import type {UserCommand} from "../UserCommand.ts";
 import type {UserUseCase} from "../UserUseCase.ts";
@@ -8,15 +7,21 @@ import {Before} from "../../../../../../../common/core/decorator/Before.ts";
 import {After} from "../../../../../../../common/core/decorator/After.ts";
 import {Service} from "../../../../../../../common/core/decorator/Service.ts";
 import {ServiceRegistry} from "../../../../../../../common/core/registry/ServiceRegistry.ts";
+import type {UserOutPort} from "../UserOutPort.ts";
+import {createOutPort} from "../../../infrastructure/api/userApi.ts";
 
 @Service
 class UserQueryService implements UserQuery {
+  constructor(private userApi: UserOutPort) {
+    this.userApi = createOutPort.api;
+  }
+
   getUserDetailList(): Promise<User[]> {
     return Promise.resolve([]);
   }
 
   async getUserList(): Promise<User[]> {
-    return await userApi.fetchUsers().then((users: User[]) => {
+    return await this.userApi.fetchAllUser().then((users: User[]) => {
       return users;
     });
   }
@@ -24,8 +29,12 @@ class UserQueryService implements UserQuery {
 
 @Service
 class UserCommandService implements UserCommand {
+  constructor(private userApi: UserOutPort) {
+    this.userApi = createOutPort.api;
+  }
+
   async saveUser(user: User): Promise<number> {
-    return await userApi.save(user);
+    return await this.userApi.save(user);
   }
 }
 
@@ -38,22 +47,16 @@ class UserUseCaseService implements UserUseCase {
 
 @Service
 class UserUseCaseAopService implements UserUseCase {
+  @Before(() => '-->> ')
+  @After(() => ' <<--')
   @Around({
     before: () => "**** ",
-    after: (user: User)=> ` | $$$$ after대문자::${user.name.toUpperCase()}`
+    after: (user: User) => ` | $$$$ after 대문자::${user.name.toUpperCase()}`
   })
   toStringUser(user: User): string {
     return user.toString();
   }
 }
-
-// const userQueryService1 = ServiceRegistry.get<UserQuery>("UserQueryService");
-// const userQueryService2 = ServiceRegistry.get<UserQuery>("UserQueryService");
-// const userQueryService3 = ServiceRegistry.get<UserCommand>("UserCommandService");
-// console.log("test 단일인스턴스 : ", userQueryService1 === userQueryService2);
-// console.log("test 단일인스턴스2 : ", userQueryService1 === userQueryService3);
-// console.log("test 단일인스턴스3 : ", userQueryService2 === userQueryService3);
-
 
 export const createService = () => ({
   query: ServiceRegistry.get<UserQuery>("UserQueryService"),

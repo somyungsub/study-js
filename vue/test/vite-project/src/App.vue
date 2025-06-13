@@ -12,14 +12,14 @@ import PopupTest from "./views/popup/PopupTest.vue";
 
 <template>
 <!--  <AppTest/>-->
-<!--  <TickTest/>-->
+  <TickTest/>
 <!--  <ComposableTest/>-->
 <!--  <AsyncTest/>-->
 <!--    <WatchTest/>-->
 <!--  <WatchTest2/>-->
 <!--  <StoreTest/>-->
 <!--  <StoreTest2/>-->
-  <PopupTest/>
+<!--  <PopupTest/>-->
 </template>
 
 <style scoped>

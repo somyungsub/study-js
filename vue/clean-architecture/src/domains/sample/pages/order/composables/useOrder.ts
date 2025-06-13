@@ -1,5 +1,5 @@
 import type {useOrderListType} from "./useOrderList.ts";
-import {ref} from "vue";
+import {type Ref, ref} from "vue";
 import type {useOrderUserType} from "./useOrderUser.ts";
 
 export type useOrderType = {
@@ -18,12 +18,12 @@ export type useOrderType = {
 
 export type ChildComposableType = 'orderList' | 'userOrder';
 
-export function useOrder() : useOrderType {
+export function useOrder(): useOrderType {
 
-  const _comp = {
-    useOrderList: null as useOrderListType,
-    useUserOrder: null as useOrderUserType,
-  }
+  const _comp: {
+    useOrderList?: useOrderListType,
+    useUserOrder?: useOrderUserType,
+  } = {}
 
   const _state = {
     sumUserOrderItemPrice: ref(0),
@@ -31,7 +31,7 @@ export function useOrder() : useOrderType {
   }
 
   function sumTotalItemPrice(): number {
-    return _comp.useOrderList.getSumOrderPrice();
+    return _comp.useOrderList?.getSumOrderPrice() ?? 0;
   }
 
   function setChildComposable(
@@ -39,14 +39,14 @@ export function useOrder() : useOrderType {
     type: ChildComposableType
   ): void {
     if (type === "orderList") {
-      _comp.useOrderList = childComposable;
+      _comp.useOrderList = childComposable as useOrderListType;
     } else {
-      _comp.useUserOrder = childComposable;
+      _comp.useUserOrder = childComposable as useOrderUserType;
     }
   }
 
   function setStateValue(): void {
-    updateItemTestValue(_comp.useOrderList?.testSize());
+    updateItemTestValue(_comp.useOrderList?.testSize() ?? 0);
     setTimeout(() => {
       updateSumUserOrderItemPrice();  // _comp.useUserOrder 데이터 조회에 따른 실행 지연
     });
@@ -57,7 +57,7 @@ export function useOrder() : useOrderType {
   }
 
   async function updateUserOrder(): Promise<void> {
-    await _comp.useUserOrder.joinUserOrder();
+    await _comp.useUserOrder?.joinUserOrder();
     updateSumUserOrderItemPrice()
   }
 
@@ -66,7 +66,7 @@ export function useOrder() : useOrderType {
   }
 
   function updateSumUserOrderItemPrice(): void {
-    _state.sumUserOrderItemPrice.value = _comp.useUserOrder.getSumUserOrderItemPrice();
+    _state.sumUserOrderItemPrice.value = _comp.useUserOrder?.getSumUserOrderItemPrice() ?? 0;
   }
 
   // TODO
@@ -75,8 +75,8 @@ export function useOrder() : useOrderType {
   }
 
   return {
-    sumUserOrderItemPrice:_state.sumUserOrderItemPrice,
-    itemTestValue:_state.itemTestValue,
+    sumUserOrderItemPrice: _state.sumUserOrderItemPrice,
+    itemTestValue: _state.itemTestValue,
     setChildComposable,
     sumTotalItemPrice,
     sumUsers,

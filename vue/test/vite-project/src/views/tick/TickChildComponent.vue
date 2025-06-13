@@ -10,7 +10,7 @@ function test(data){
 }
 onMounted(() => {
   console.log("하위1 st");
-  for (let i = 0; i < 1_000; i++) {
+  for (let i = 0; i < 100; i++) {
     console.log("하위1 : ", i);
   }
   console.log("하위1 end");

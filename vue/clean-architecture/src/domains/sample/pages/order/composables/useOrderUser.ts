@@ -19,8 +19,10 @@ export type userOrderDataType = {
 export function useOrderUser(): useOrderUserType {
   const {useCase} = createService();
   const {query: userQuery} = createUserService();
-  const _state = {
-    orderUsers: ref<userOrderDataType[]>([])
+  const _state: {
+    orderUsers: Ref<userOrderDataType[]>;
+  } = {
+    orderUsers: ref([])
   }
 
   async function joinUserOrder(): Promise<void> {
@@ -45,7 +47,7 @@ export function useOrderUser(): useOrderUserType {
 
   function getSumUserOrderItemPrice(): number {
     return  _state.orderUsers?.value
-      .flatMap(userOrder => userOrder.order.orderItems)
+      .flatMap(userOrder => userOrder.order.orderItems as OrderItem[])
       .map((orderItem: OrderItem) => orderItem.price * orderItem.quantity)
       .reduce((previousValue, currentValue) => previousValue + currentValue, 0);
   }

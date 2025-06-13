@@ -6,5 +6,5 @@ export interface OrderUseCase {
   fetchAllOrder(): Promise<Order[]>;
 
   // 2. 사용자별 주문목록 조회 (하위컴포넌트2 : OrderUserList.vue)
-  joinUserOrder(userId: number): Promise<User>;
+  joinUserOrder(userId: number): User | any;
 }

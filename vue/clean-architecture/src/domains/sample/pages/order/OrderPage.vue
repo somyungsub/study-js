@@ -31,17 +31,17 @@ onMounted(() => {
 </script>
 
 <template>
-  <OrderList @composable="(composable) => setComposable(composable, 'orderList')" />
-  <UserOrderList @composable="(composable) => setComposable(composable, 'userOrder')" />
+  <OrderList @composable="(composable) => setComposable(composable, 'orderList')"/>
+  <UserOrderList @composable="(composable) => setComposable(composable, 'userOrder')"/>
 
   <div class="info-card">
-    <h2>📦 상위 테스트 -OrderPage.vue (주문/유저별 관련)  </h2>
+    <h2>📦 상위 테스트 -OrderPage.vue (주문/유저별 관련) </h2>
 
     <div class="info-row">
       <div class="label">
         1. (테스트용 랜덤 상태값 갱신) : <strong>{{ orderComp.itemTestValue }}</strong>
       </div>
-      <button class="action-btn" @click="orderComp.setSumItemPriceTest((Math.random()*100).toFixed(0))">
+      <button class="action-btn" @click="orderComp.setSumItemPriceTest(Number((Math.random()*100).toFixed(0)))">
         상태값 변경
       </button>
     </div>
@@ -55,7 +55,9 @@ onMounted(() => {
 
     <div class="info-row">
       <div class="label">
-        3. 사용자 가격*수량 총합 <strong>(사용자ID : 5,10,15,20 존재시)</strong> : <strong>{{ orderComp.sumUserOrderItemPrice }}</strong>
+        3. 사용자 가격*수량 총합 <strong>(사용자ID : 5,10,15,20 존재시)</strong> : <strong>{{
+          orderComp.sumUserOrderItemPrice
+        }}</strong>
       </div>
       <button class="action-btn" @click="orderComp.updateUserOrder">
         위에서 사용자 추가 → 가격 갱신

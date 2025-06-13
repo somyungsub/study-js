@@ -1,12 +1,12 @@
 type ToStringField = { [key: string]: (instance: any) => string };
 
-export function ToString(): ClassDecorator;
+export function ToString(target: Function): void;
 export function ToString(transFields: ToStringField[]): ClassDecorator;
 export function ToString(arg?: ToStringField[] | Function): ClassDecorator {
   if (typeof arg === 'function') {
     // @ToString 사용 시
     attachToString(arg, []);
-    return arg;
+    return arg as ClassDecorator;
   }
 
   // @ToString([{...}]) 사용 시

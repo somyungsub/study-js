@@ -16,7 +16,7 @@ const useUserPageComp = useUserPage();
     <EventHistoryList @useEventHistory="(comp) => useUserPageComp.setChildComposable(comp, 'useEventHistory')"/>
   </div>
   <div class="summary">
-    상위영역 (사용자 + 히스토리 목록 합계) : <strong>{{useUserPageComp.userCount}}</strong>
+    상위영역 (사용자 + 히스토리 목록 합계) : <strong>{{ useUserPageComp.userCount }}</strong>
   </div>
 </template>
 
@@ -27,7 +27,7 @@ const useUserPageComp = useUserPage();
   padding: 24px;
   border-radius: 10px;
   margin-bottom: 24px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', sans-serif;
 }
 

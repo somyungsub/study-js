@@ -1,77 +1,31 @@
-//{
-//  "extends": "@vue/tsconfig/tsconfig.dom.json",
-//  "compilerOptions": {
-//    "baseUrl": ".",
-//    "paths": {
-//      "@/*": ["src/*"]
-//    },
-//    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-//    "strict": true,
-//    "noUnusedLocals": true,
-//    "noUnusedParameters": true,
-//    "erasableSyntaxOnly": true,
-//    "noFallthroughCasesInSwitch": true,
-//    "noUncheckedSideEffectImports": true,
-//    "noImplicitAny": true,
-//    "strictFunctionTypes": true,
-//    "strictBindCallApply": true,
-//    "experimentalDecorators": true,
-//    "emitDecoratorMetadata": true
-//  },
-//  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
-//}
-
-
-//{
-//  "extends": "@vue/tsconfig/tsconfig.dom.json",
-//  "compilerOptions": {
-//    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-//    "baseUrl": ".",
-//    "paths": {
-//      "@/*": ["src/*"]
-//    },
-//
-//    /* Linting */
-//    "strict": true,
-//    "noUnusedLocals": true,
-//    "noUnusedParameters": true,
-//    "erasableSyntaxOnly": true,
-//    "noFallthroughCasesInSwitch": true,
-//    "noUncheckedSideEffectImports": true,
-//    "noImplicitAny": true,
-//    "strictFunctionTypes": true,
-//    "strictBindCallApply": true,
-//    "experimentalDecorators": true,
-//    "emitDecoratorMetadata": true
-//  },
-//  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
-//}
-
-
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "bundler",
-
     "strict": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "types": ["vite/client"],
+    "types": [
+      "vite/client"
+    ],
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "vite.config.ts"
+  ]
 }

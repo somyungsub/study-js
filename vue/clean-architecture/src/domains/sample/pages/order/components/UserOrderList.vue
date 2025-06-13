@@ -12,6 +12,7 @@ onBeforeMount(() => {
 
 onMounted(async () => {
   await orderUser.joinUserOrder();
+  console.log("orderUser.orderUsers : ", orderUser.orderUsers.value);
 });
 
 </script>
@@ -19,7 +20,7 @@ onMounted(async () => {
 <template>
   <div>
     <h2>사용자별 구매 목록</h2>
-    <ul v-for="orderUser in orderUser.orderUsers.value" :key="orderUser.id" class="order-user-card">
+    <ul v-for="orderUser in orderUser.orderUsers.value" :key="orderUser.order.id" class="order-user-card">
       <li class="info-block-wrapper">
         <div class="info-block order-block">
           <h4>Order</h4>
