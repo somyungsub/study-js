@@ -7,7 +7,7 @@ import {Around} from "../../../../../../../common/core/decorator/Around.ts";
 import {Before} from "../../../../../../../common/core/decorator/Before.ts";
 import {After} from "../../../../../../../common/core/decorator/After.ts";
 import {Service} from "../../../../../../../common/core/decorator/Service.ts";
-import {ServiceRegistry} from "../../../../../../../common/core/di/ServiceRegistry.ts";
+import {ServiceRegistry} from "../../../../../../../common/core/registry/ServiceRegistry.ts";
 
 @Service
 class UserQueryService implements UserQuery {
@@ -47,9 +47,17 @@ class UserUseCaseAopService implements UserUseCase {
   }
 }
 
+// const userQueryService1 = ServiceRegistry.get<UserQuery>("UserQueryService");
+// const userQueryService2 = ServiceRegistry.get<UserQuery>("UserQueryService");
+// const userQueryService3 = ServiceRegistry.get<UserCommand>("UserCommandService");
+// console.log("test 단일인스턴스 : ", userQueryService1 === userQueryService2);
+// console.log("test 단일인스턴스2 : ", userQueryService1 === userQueryService3);
+// console.log("test 단일인스턴스3 : ", userQueryService2 === userQueryService3);
+
+
 export const createService = () => ({
   query: ServiceRegistry.get<UserQuery>("UserQueryService"),
-  command: ServiceRegistry.get<UserCommandService>("UserCommandService"),
+  command: ServiceRegistry.get<UserCommand>("UserCommandService"),
   useCase: ServiceRegistry.get<UserUseCase>("UserUseCaseAopService"),   // AOP 기능 추가 된 서비스
   // useCase: ServiceRegistry.get<UserUseCase>("UserUseCaseService"),   // 기본 기존 서비스
 

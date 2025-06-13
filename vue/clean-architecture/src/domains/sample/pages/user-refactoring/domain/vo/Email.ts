@@ -1,6 +1,6 @@
 import {ToString} from "../../../../../../common/core/decorator/ToString.ts";
 
-@ToString()
+@ToString
 export class Email {
 
   constructor(

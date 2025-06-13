@@ -22,7 +22,7 @@ onMounted(async () => {
       </li>
     </ul>
 
-    <button class="action-btn" @click="useUserComp.saveUser(User.testValue())">사용자 저장</button>
+    <button class="action-btn" @click="useUserComp.saveUser(User.testValue())">사용자 추가</button>
   </div>
 
   <div class="section">
@@ -33,7 +33,7 @@ onMounted(async () => {
       </li>
     </ul>
 
-    <button class="action-btn" @click="useUserComp.saveHistory(UserEventHistory.testValue())">이벤트 저장</button>
+    <button class="action-btn" @click="useUserComp.saveHistory(UserEventHistory.testValue())">이벤트 추가</button>
   </div>
 </template>
 

@@ -3,7 +3,7 @@ import type {OrderUseCase} from "../OrderUseCase.ts";
 import type {UserQuery} from "../../../user-refactoring/usecase/user/UserQuery.ts";
 import {orderApi} from "../../infra/api/orderApi.ts";
 import {Service} from "../../../../../../common/core/decorator/Service.ts";
-import {ServiceRegistry} from "../../../../../../common/core/di/ServiceRegistry.ts";
+import {ServiceRegistry} from "../../../../../../common/core/registry/ServiceRegistry.ts";
 
 @Service
 class OrderUseCaseService implements OrderUseCase {

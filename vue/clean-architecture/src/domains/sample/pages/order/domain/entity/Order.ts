@@ -1,7 +1,7 @@
 import {ToString} from "../../../../../../common/core/decorator/ToString.ts";
 import type {OrderItem} from "./OrderItem.ts";
 
-@ToString()
+@ToString
 export class Order {
   constructor(
     readonly id: number,

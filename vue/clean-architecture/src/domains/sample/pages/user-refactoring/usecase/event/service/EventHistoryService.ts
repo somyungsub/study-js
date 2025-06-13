@@ -3,7 +3,7 @@ import {type UserEventHistory} from "../../../domain/entity/UserEventHistory.ts"
 import {eventHistoryApi} from "../../../infrastructure/api/eventHistoryApi.ts";
 import type {EventHistoryCommand} from "../EventHistoryCommand.ts";
 import {Service} from "../../../../../../../common/core/decorator/Service.ts";
-import {ServiceRegistry} from "../../../../../../../common/core/di/ServiceRegistry.ts";
+import {ServiceRegistry} from "../../../../../../../common/core/registry/ServiceRegistry.ts";
 
 @Service
 class EventHistoryService implements EventHistoryQuery {

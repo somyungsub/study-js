@@ -1,6 +1,6 @@
 const registry = new Map<string, any>();
 
-export const ServiceRegistry = {
+export const ServiceRegistry = Object.freeze({
   get<T>(name: string): T {
     const service = registry.get(name);
     if (!service) {
@@ -17,4 +17,4 @@ export const ServiceRegistry = {
   has(name: string): boolean {
     return registry.has(name);
   },
-};
+});
