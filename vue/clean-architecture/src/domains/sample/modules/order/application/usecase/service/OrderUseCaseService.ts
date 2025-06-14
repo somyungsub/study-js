@@ -1,6 +1,6 @@
 import type {Order} from "../../../domain/entity/Order.ts";
 import type {OrderUseCase} from "../OrderUseCase.ts";
-import type {UserQuery} from "../../../../user-refactoring/application/usecase/user/UserQuery.ts";
+import type {UserQueryIn} from "../../../../user-refactoring/application/user/UserQueryIn.ts";
 import {orderApi} from "../../../infrastructure/api/orderApi.ts";
 import {Service} from "../../../../../../../common/core/decorator/Service.ts";
 import {ServiceRegistry} from "../../../../../../../common/core/registry/ServiceRegistry.ts";
@@ -8,8 +8,8 @@ import type {User} from "../../../../user-refactoring/domain/entity/User.ts";
 
 @Service
 export class OrderUseCaseService implements OrderUseCase {
-  constructor(private userQueryService: UserQuery) {
-    this.userQueryService = ServiceRegistry.get<UserQuery>("UserQueryService"); // DI
+  constructor(private userQueryService: UserQueryIn) {
+    this.userQueryService = ServiceRegistry.get<UserQueryIn>("UserQueryService"); // DI
   }
 
   async fetchAllOrder(): Promise<Order[]> {

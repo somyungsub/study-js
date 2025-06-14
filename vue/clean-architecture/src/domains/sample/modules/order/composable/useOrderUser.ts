@@ -1,5 +1,5 @@
 import {createService} from "../application/usecase/service/OrderUseCaseService.ts";
-import {createService as createUserService} from "../../user-refactoring/application/usecase/user/service/UserService.ts";
+import {createService as createUserService} from "../../user-refactoring/application/user/service/UserService.ts";
 import {type Ref, ref} from "vue";
 import type {Order} from "../domain/entity/Order.ts";
 import type {User} from "../../user-refactoring/domain/entity/User.ts";

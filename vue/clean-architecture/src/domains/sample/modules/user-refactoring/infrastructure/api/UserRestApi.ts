@@ -1,19 +1,15 @@
 import {User} from "../../domain/entity/User.ts";
 import {GENDER, USER_TYPES} from "../../domain/constant/UserTypes.ts";
 import {Email} from "../../domain/vo/Email.ts";
-import type {UserOutPort} from "../../application/usecase/user/UserOutPort.ts";
+import type {UserApiOut} from "../../application/user/UserApiOut.ts";
 
-// 유저
+// 유저 테스트 데이터
 const userRepository: any[] = [
   {id: 1, name: "ssss", email: Email.from({host:'sss', domain:'abc.com'}), gender: GENDER[0], userType: USER_TYPES[0]},
   {id: 2, name: "ssss2", email: Email.from({host:'sss2', domain:'abc2.com'}), gender: GENDER[1], userType: USER_TYPES[0]},
 ];
 
-function includeUser(user: User) {
-  return userRepository.map(value => value.id).includes(user.id);
-}
-
-class UserApi implements UserOutPort {
+class UserRestApi implements UserApiOut {
   async fetchAllUser(): Promise<User[]> {
     // TODO 서버 api 통신후 response data -> 도메인 entity로 변환 작업, 현재는 샘플 data -> User entity, from으로 매핑
     return await Promise.resolve(userRepository).then(values => values.map(user => User.from(user)));
@@ -30,8 +26,12 @@ class UserApi implements UserOutPort {
 
 }
 
+function includeUser(user: User) {
+  return userRepository.map(value => value.id).includes(user.id);
+}
+
 export const createOutPort: {
-  api: UserOutPort;
+  api: UserApiOut;
 } = {
-  api: new UserApi() as UserOutPort,
+  api: new UserRestApi()
 }
