@@ -8,7 +8,7 @@ import {After} from "../../../../../../../../common/core/decorator/After.ts";
 import {Service} from "../../../../../../../../common/core/decorator/Service.ts";
 import {ServiceRegistry} from "../../../../../../../../common/core/registry/ServiceRegistry.ts";
 import type {UserOutPort} from "../UserOutPort.ts";
-import {createOutPort} from "../../../../infrastructure/api/userApi.ts";
+import {createOutPort} from "../../../../infrastructure/api/UserApi.ts";
 
 @Service
 class UserQueryService implements UserQuery {
