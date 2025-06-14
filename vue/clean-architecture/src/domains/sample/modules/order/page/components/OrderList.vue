@@ -22,7 +22,7 @@ onMounted(async () => {
 
 <template>
   <div class="order-list-container">
-    <h2>주문목록 (디폴트 테스트 데이터)</h2>
+    <h2>전체 주문목록 (디폴트 테스트 데이터 고정)</h2>
     <ul class="order-list">
       <!--  TODO 반응형 데이터 Composable 내부로 캡슐화?     -->
       <li v-for="order in _state.orders.value" :key="order.id" class="order-item">

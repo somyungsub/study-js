@@ -2,13 +2,16 @@
 
 import {UserEventHistory} from "../../domain/entity/UserEventHistory.ts";
 import {useEventHistory} from "../../composable/useEventHistory.ts";
-import {onMounted} from "vue";
+import {onBeforeUnmount, onMounted} from "vue";
 
-const emit = defineEmits(['useEventHistory']);
+const emit = defineEmits(['composable']);
 const useEventHistoryComp = useEventHistory();
 
+onBeforeUnmount(() => {
+  emit("composable", useEventHistoryComp);
+});
+
 onMounted(async () => {
-  emit("useEventHistory", useEventHistoryComp);
   await useEventHistoryComp.fetchAllHistory();
 });
 

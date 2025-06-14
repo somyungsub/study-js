@@ -1,14 +1,17 @@
 <script setup lang="ts">
 
 import {User} from "../../domain/entity/User.ts";
-import {useUser} from "../../composable/useUser.ts";
-import {onMounted} from "vue";
+import {useUserList} from "../../composable/useUserList.ts";
+import {onBeforeUnmount, onMounted} from "vue";
 
-const emit = defineEmits(['useUser']);
-const useUserComp = useUser();
+const emit = defineEmits(['composable']);
+const useUserComp = useUserList();
+
+onBeforeUnmount(() => {
+  emit("composable", useUserComp);
+});
 
 onMounted(async () => {
-  emit("useUser", useUserComp);
   await useUserComp.fetchAllUser();
 });
 </script>

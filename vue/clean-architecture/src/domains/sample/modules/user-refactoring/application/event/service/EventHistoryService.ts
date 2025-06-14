@@ -1,14 +1,19 @@
-import type {EventHistoryQuery} from "../EventHistoryQuery.ts";
+import type {EventHistoryQueryIn} from "../EventHistoryQueryIn.ts";
 import {type UserEventHistory} from "../../../domain/entity/UserEventHistory.ts";
-import {eventHistoryApi} from "../../../infrastructure/api/eventHistoryApi.ts";
-import type {EventHistoryCommand} from "../EventHistoryCommand.ts";
+import type {EventHistoryCommandIn} from "../EventHistoryCommandIn.ts";
 import {Service} from "../../../../../../../common/core/decorator/Service.ts";
 import {ServiceRegistry} from "../../../../../../../common/core/registry/ServiceRegistry.ts";
+import type {EventHistoryApiOut} from "../EventHistoryApiOut.ts";
+import {createApi} from "../../../infrastructure/api/EventHistoryRestApi.ts";
 
 @Service
-class EventHistoryService implements EventHistoryQuery {
+class EventHistoryService implements EventHistoryQueryIn {
+  constructor(private eventHistoryApi: EventHistoryApiOut) {
+    this.eventHistoryApi = createApi.api;
+  }
+
   async fetchAllHistory(): Promise<UserEventHistory[]> {
-    return await eventHistoryApi.fetchAllUserEventHistory().then((histories: UserEventHistory[]) => {
+    return await this.eventHistoryApi.fetchAllUserEventHistory().then((histories: UserEventHistory[]) => {
       return histories;
     });
   }
@@ -16,16 +21,19 @@ class EventHistoryService implements EventHistoryQuery {
 
 
 @Service
-class EventCommandService implements EventHistoryCommand {
+class EventCommandService implements EventHistoryCommandIn {
+  constructor(private eventHistoryApi: EventHistoryApiOut) {
+    this.eventHistoryApi = createApi.api;
+  }
   async save(history: UserEventHistory): Promise<void> {
-    await eventHistoryApi.save(history);
+    await this.eventHistoryApi.save(history);
     return Promise.resolve();
   }
 }
 
 export const createService = () => ({
-  query: ServiceRegistry.get<EventHistoryQuery>("EventHistoryService"),
-  command: ServiceRegistry.get<EventHistoryCommand>("EventCommandService"),
+  query: ServiceRegistry.get<EventHistoryQueryIn>("EventHistoryService"),
+  command: ServiceRegistry.get<EventHistoryCommandIn>("EventCommandService"),
   // query: new EventHistoryService(),
   // command: new EventCommandService(),
 });

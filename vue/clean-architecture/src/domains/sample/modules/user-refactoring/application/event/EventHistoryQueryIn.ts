@@ -1,6 +1,6 @@
 import  {type UserEventHistory} from "../../domain/entity/UserEventHistory.ts";
 
-export interface EventHistoryQuery {
+export interface EventHistoryQueryIn {
   fetchAllHistory(): Promise<UserEventHistory[]>;
   // ....
 }

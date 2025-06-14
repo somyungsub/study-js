@@ -12,7 +12,6 @@ onBeforeMount(() => {
 
 onMounted(async () => {
   await orderUser.joinUserOrder();
-  console.log("orderUser.orderUsers : ", orderUser.orderUsers.value);
 });
 
 </script>

@@ -12,7 +12,7 @@ const userRepository: any[] = [
 class UserRestApi implements UserApiOut {
   async fetchAllUser(): Promise<User[]> {
     // TODO 서버 api 통신후 response data -> 도메인 entity로 변환 작업, 현재는 샘플 data -> User entity, from으로 매핑
-    return await Promise.resolve(userRepository).then(values => values.map(user => User.from(user)));
+    return await Promise.resolve(userRepository).then(values => values.map(User.from));
   }
 
   async save(user: User): Promise<number> {

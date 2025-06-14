@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import EventHistoryList from "./components/EventHistoryList.vue";
 import UserList from "./components/UserList.vue";
-import {useUserPage} from "../composable/useUserPage.ts";
+import {useUser} from "../composable/useUser.ts";
 
-const useUserPageComp = useUserPage();
+const useUserPageComp = useUser();
 
 </script>
 
 <template>
   <div class="section">
-    <UserList @useUser="(comp) => useUserPageComp.setChildComposable(comp, 'useUser')"/>
+    <UserList @composable="(comp) => useUserPageComp.setChildComposable(comp, 'useUser')"/>
   </div>
 
   <div class="section">
-    <EventHistoryList @useEventHistory="(comp) => useUserPageComp.setChildComposable(comp, 'useEventHistory')"/>
+    <EventHistoryList @composable="(comp) => useUserPageComp.setChildComposable(comp, 'useEventHistory')"/>
   </div>
   <div class="summary">
     상위영역 (사용자 + 히스토리 목록 합계) : <strong>{{ useUserPageComp.userCount }}</strong>
