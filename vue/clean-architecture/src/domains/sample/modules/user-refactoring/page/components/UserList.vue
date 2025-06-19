@@ -2,17 +2,18 @@
 
 import {User} from "../../domain/entity/User.ts";
 import {useUserList} from "../../composable/useUserList.ts";
-import {onBeforeUnmount, onMounted} from "vue";
+import {onBeforeMount, onMounted} from "vue";
+import {EventKey} from "../../../../../../common/constant/EventKey.ts";
 
-const emit = defineEmits(['composable']);
-const useUserComp = useUserList();
+const emit = defineEmits([EventKey.COMPOSABLE]);
+const useUserListComp = useUserList();
 
-onBeforeUnmount(() => {
-  emit("composable", useUserComp);
+onBeforeMount(() => {
+  emit(EventKey.COMPOSABLE, useUserListComp);
 });
 
 onMounted(async () => {
-  await useUserComp.fetchAllUser();
+  await useUserListComp.fetchAllUser();
 });
 </script>
 
@@ -20,8 +21,8 @@ onMounted(async () => {
   <div>
     <h2>👤 사용자 목록 - 리팩토링</h2>
     <ul>
-      <li v-for="user in useUserComp.users.value" :key="user.id" class="list-item">
-        {{useUserComp.toStringUser(user)}}
+      <li v-for="user in useUserListComp.users.value" :key="user.id" class="list-item">
+        {{useUserListComp.toStringUser(user)}}
 <!--
 TODO 아래 같은 형식에서 만약 . 앞뒤로 라인을 추가해달라는 요구사항 발생 -> function으로 이 컴포넌트에서 처리하거나
 template 영역에 추가해야하거나 해야하는데
@@ -36,7 +37,7 @@ template 영역에 추가해야하거나 해야하는데
 
     <button
         class="action-btn"
-        @click="useUserComp.saveUser(User.testValue())">
+        @click="useUserListComp.saveUser(User.testValue())">
       사용자 추가 (ID 랜덤생성 : 같은 ID 존재시 추가 안됨)
     </button>
   </div>

@@ -2,13 +2,26 @@
 
 import {UserEventHistory} from "../../domain/entity/UserEventHistory.ts";
 import {useEventHistory} from "../../composable/useEventHistory.ts";
-import {onBeforeUnmount, onMounted} from "vue";
+import {onBeforeMount, onMounted} from "vue";
+import {EventKey} from "../../../../../../common/constant/EventKey.ts";
 
-const emit = defineEmits(['composable']);
+const emit = defineEmits([EventKey.COMPOSABLE]);
 const useEventHistoryComp = useEventHistory();
 
-onBeforeUnmount(() => {
-  emit("composable", useEventHistoryComp);
+/*
+  이경우도 가능하나, provide/inject 해서
+  상/하위간비즈니스 처리를 사용할 이유가 없다면,
+  기본적으로 emit이 낫지 않을까 -> emit -> 상위가 하위의 처리가 필요로 하는경우
+  ////
+  emit : 상위가 판단 (상위 -> 하위 처리로직 활용, 기본적으로 emit은 디폴트 설정 - 사용할지말지는 상위판단)
+  inject : 하위가 판단 (하위 -> 상위 처리로직 활용, 필요한 경우만 inject)
+ */
+
+// const useUserCompositionComp = inject<useUserCompositionType>('useUserCompositionComp');
+// useUserCompositionComp?.setChildComposable(useEventHistoryComp,'useEventHistory')
+
+onBeforeMount(() => {
+  emit(EventKey.COMPOSABLE, useEventHistoryComp);
 });
 
 onMounted(async () => {
