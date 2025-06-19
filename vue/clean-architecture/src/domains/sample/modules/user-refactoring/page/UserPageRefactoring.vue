@@ -9,7 +9,7 @@ const useUserPageComp = useUser();
 
 <template>
   <div class="section">
-    <UserList @composable="(comp) => useUserPageComp.setChildComposable(comp, 'useUser')"/>
+    <UserList @composable="(comp) => useUserPageComp.setChildComposable(comp, 'useUserList')"/>
   </div>
 
   <div class="section">
