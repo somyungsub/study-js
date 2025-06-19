@@ -11,15 +11,15 @@ obj.printNameFn();
 obj.printNameArrow();
 
 
-function fun() {
+function thisTest() {
   console.log("this : ", this);
 }
-const funArrow = () => {
+const tisTestArrow = () => {
   console.log("this : ", this);
 }
 
-fun();
-funArrow();
+thisTest();
+tisTestArrow();
 
 
 setTimeout(() => {
