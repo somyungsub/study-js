@@ -17,7 +17,7 @@ const useEventHistoryComp = useEventHistory();
   inject : 하위가 판단 (하위 -> 상위 처리로직 활용, 필요한 경우만 inject)
  */
 
-// const useUserCompositionComp = inject<useUserCompositionType>('useUserCompositionComp');
+// const useUserCompositionComp = ContextContainer.inject<useUserCompositionType>(CONTEXT_KEYS.SAMPLE.USER_REFACTORING);
 // useUserCompositionComp?.setChildComposable(useEventHistoryComp,'useEventHistory')
 
 onBeforeMount(() => {

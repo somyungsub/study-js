@@ -3,7 +3,8 @@ import EventHistoryList from "./components/EventHistoryList.vue";
 import UserList from "./components/UserList.vue";
 import {useUser} from "../composable/useUser.ts";
 import {useUserComposition} from "../composable/composition/useUserComposition.ts";
-import {onBeforeMount, provide} from "vue";
+import {onBeforeMount} from "vue";
+import {CONTEXT_KEYS, ContextContainer} from "../../../../../common/core/context/ContextContainer.ts";
 
 // 상위 전용
 const useUserPageComp = useUser();
@@ -12,7 +13,9 @@ const useUserPageComp = useUser();
 const useUserCompositionComp = useUserComposition(useUserPageComp);
 
 onBeforeMount(() => {
-  provide("useUserCompositionComp", useUserCompositionComp);
+  ContextContainer.provide({
+    [CONTEXT_KEYS.SAMPLE.USER_REFACTORING]: useUserCompositionComp
+  });
 });
 
 </script>
@@ -23,7 +26,8 @@ onBeforeMount(() => {
   </div>
 
   <div class="section">
-    <EventHistoryList @composable="(comp) => useUserCompositionComp.setChildComposable(comp, 'useEventHistory')"/>
+<!--    <EventHistoryList @composable="(comp) => useUserCompositionComp.setChildComposable(comp, 'useEventHistory')"/>-->
+    <EventHistoryList/>
   </div>
   <div class="summary">
     상위영역 (사용자 + 히스토리 목록 합계) : <strong>{{ useUserPageComp.userCount }}</strong>
