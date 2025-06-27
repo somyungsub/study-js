@@ -4,11 +4,17 @@ import UserPageRefactoring from "./domains/sample/modules/user-refactoring/page/
 import OrderPage from "./domains/sample/modules/order/page/OrderPage.vue";
 import UserPageJs from "./domains/sample/modules/use-js/page/UserPageJs.vue";
 
-const cssKey = '--textColorVar';
 const _var = {
   textColor:{
-    red: { [cssKey]: 'red' },
-    yellow: { [cssKey]: 'yellow' }
+    get red() {
+      return this.color('red');
+    },
+    get yellow() {
+      return this.color('yellow');
+    },
+    color(color) {
+      return {'--textColorVar': `${color}`};
+    },
   }
 }
 </script>
