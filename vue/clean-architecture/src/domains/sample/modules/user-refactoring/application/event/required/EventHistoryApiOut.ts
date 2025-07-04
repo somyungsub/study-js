@@ -1,4 +1,4 @@
-import type {UserEventHistory} from "../../domain/entity/UserEventHistory.ts";
+import type {UserEventHistory} from "../../../domain/entity/UserEventHistory.ts";
 
 export interface EventHistoryApiOut {
   fetchAllUserEventHistory(): Promise<UserEventHistory[]>;

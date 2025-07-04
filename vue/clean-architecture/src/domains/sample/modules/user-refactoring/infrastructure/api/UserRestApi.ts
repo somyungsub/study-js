@@ -1,7 +1,7 @@
 import {User} from "../../domain/entity/User.ts";
 import {GENDER, USER_TYPES} from "../../domain/constant/UserTypes.ts";
 import {Email} from "../../domain/vo/Email.ts";
-import type {UserApiOut} from "../../application/user/UserApiOut.ts";
+import type {UserApiOut} from "../../application/user/required/UserApiOut.ts";
 
 // 유저 테스트 데이터
 const userRepository: any[] = [

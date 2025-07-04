@@ -1,10 +1,10 @@
-import type {EventHistoryQueryIn} from "../EventHistoryQueryIn.ts";
-import {type UserEventHistory} from "../../../domain/entity/UserEventHistory.ts";
-import type {EventHistoryCommandIn} from "../EventHistoryCommandIn.ts";
-import {Service} from "../../../../../../../common/core/decorator/Service.ts";
-import {ServiceRegistry} from "../../../../../../../common/core/registry/ServiceRegistry.ts";
-import type {EventHistoryApiOut} from "../EventHistoryApiOut.ts";
-import {createApi} from "../../../infrastructure/api/EventHistoryRestApi.ts";
+import type {EventHistoryQueryIn} from "./provided/EventHistoryQueryIn.ts";
+import {type UserEventHistory} from "../../domain/entity/UserEventHistory.ts";
+import type {EventHistoryCommandIn} from "./provided/EventHistoryCommandIn.ts";
+import {Service} from "../../../../../../common/core/decorator/Service.ts";
+import {ServiceRegistry} from "../../../../../../common/core/registry/ServiceRegistry.ts";
+import type {EventHistoryApiOut} from "./required/EventHistoryApiOut.ts";
+import {createApi} from "../../infrastructure/api/EventHistoryRestApi.ts";
 
 @Service
 class EventHistoryService implements EventHistoryQueryIn {

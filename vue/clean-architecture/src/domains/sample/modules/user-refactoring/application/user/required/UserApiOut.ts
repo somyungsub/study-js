@@ -1,4 +1,4 @@
-import type {User} from "../../domain/entity/User.ts";
+import type {User} from "../../../domain/entity/User.ts";
 
 export interface UserApiOut {
   fetchAllUser(): Promise<User[]>;

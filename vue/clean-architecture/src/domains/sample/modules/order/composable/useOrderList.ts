@@ -1,4 +1,4 @@
-import {createService} from "../application/usecase/service/OrderUseCaseService.ts";
+import {createService} from "../application/OrderUseCaseService.ts";
 import type {Order} from "../domain/entity/Order.ts";
 
 export type useOrderListType = {

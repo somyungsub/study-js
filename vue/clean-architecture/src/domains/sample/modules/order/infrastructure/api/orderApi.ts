@@ -1,5 +1,6 @@
 import {Order} from "../../domain/entity/Order.ts";
 import {OrderItem} from "../../domain/entity/OrderItem.ts";
+import type {OrderApiOut} from "../../application/required/OrderApiOut.ts";
 
 // TODO 임시데이터
 const orderRepository: Order[] = [
@@ -70,8 +71,13 @@ const orderRepository: Order[] = [
   ),
 ];
 
-export const orderApi = {
-  fetchAll(): Promise<Order[]> {
+class OrderApi implements OrderApiOut {
+  fetchAllOrder(): Promise<Order[]> {
     return Promise.resolve(orderRepository);
   }
+
+}
+
+export const createApi = {
+  api: new OrderApi()
 }

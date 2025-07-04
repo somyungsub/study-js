@@ -1,5 +1,5 @@
 import {UserEventHistory} from "../../domain/entity/UserEventHistory.ts";
-import type {EventHistoryApiOut} from "../../application/event/EventHistoryApiOut.ts";
+import type {EventHistoryApiOut} from "../../application/event/required/EventHistoryApiOut.ts";
 
 // 이벤트 참여 이력
 const eventHistoryRepository: any[] = [

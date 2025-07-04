@@ -1,14 +1,14 @@
-import {type User} from "../../../domain/entity/User.ts";
-import type {UserQueryIn} from "../UserQueryIn.ts";
-import type {UserCommandIn} from "../UserCommandIn.ts";
-import type {UserBizIn} from "../UserBizIn.ts";
-import {Around} from "../../../../../../../common/core/decorator/Around.ts";
-import {Before} from "../../../../../../../common/core/decorator/Before.ts";
-import {After} from "../../../../../../../common/core/decorator/After.ts";
-import {Service} from "../../../../../../../common/core/decorator/Service.ts";
-import {ServiceRegistry} from "../../../../../../../common/core/registry/ServiceRegistry.ts";
-import type {UserApiOut} from "../UserApiOut.ts";
-import {createOutPort} from "../../../infrastructure/api/UserRestApi.ts";
+import {type User} from "../../domain/entity/User.ts";
+import type {UserQueryIn} from "./provided/UserQueryIn.ts";
+import type {UserCommandIn} from "./provided/UserCommandIn.ts";
+import type {UserBizIn} from "./provided/UserBizIn.ts";
+import {Around} from "../../../../../../common/core/decorator/Around.ts";
+import {Before} from "../../../../../../common/core/decorator/Before.ts";
+import {After} from "../../../../../../common/core/decorator/After.ts";
+import {Service} from "../../../../../../common/core/decorator/Service.ts";
+import {ServiceRegistry} from "../../../../../../common/core/registry/ServiceRegistry.ts";
+import type {UserApiOut} from "./required/UserApiOut.ts";
+import {createOutPort} from "../../infrastructure/api/UserRestApi.ts";
 
 @Service
 class UserQueryService implements UserQueryIn {

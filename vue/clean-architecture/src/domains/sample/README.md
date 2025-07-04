@@ -57,5 +57,59 @@ user-refactoring/
 │
 └── store/                        # (선택) 상태 관리 (Pinia 등 사용 시)
     └── ...
+```
 
+
+## 전체 폴더 구조 v1.0
+- required / provided 추가 -> 헥사고날 아키
+```
+user-refactoring/
+├── UserPageRefactoring.vue        # 페이지 최상위 진입점 (Feature View)
+│
+├── components/                    # 하위 컴포넌트 (View 전용) + 재사용 영역
+│   ├── UserList.vue
+│   └── EventHistoryList.vue
+│
+├── composables/                   # ViewModel 계층 (Composable + 상태 조작)
+│   ├── useUser.ts
+│   ├── useEventHistory.ts
+│   └── useUserPage.ts
+│
+├── domain/                        # 도메인 모델 (Entity, VO, Enum 등)
+│   ├── constant/                  # 상수, 타입, Enum 등
+│   │   └── UserTypes.ts
+│   ├── entity/
+│   │   ├── User.ts
+│   │   └── UserEventHistory.ts
+│   └── vo/                        # Value Object (필요 시)
+│       └── ...
+│
+├── infrastructure/               # 외부 시스템 통신 (API 등 Out Adapter)
+│   └── api/
+│       ├── userApi.ts
+│       └── eventHistoryApi.ts
+│
+├── usecase/                      # 유스케이스 계층 (Application Layer)
+│   ├── user/
+│   │   ├── required/              # 인프라에 요구하는 Port (Interface)
+│   │   │   └── UserRepository.ts
+│   │   ├── provided/              # 인프라에서 제공받는 구현체 (Adapter)
+│   │   │   └── UserRepositoryImpl.ts
+│   │   ├── UserCommand.ts         # Command 인터페이스
+│   │   ├── UserQuery.ts           # Query 인터페이스
+│   │   └── service/
+│   │       └── UserService.ts     # 실제 구현체 
+│   │
+│   └── event/
+│       ├── required/              # 인프라에 요구하는 Port (Interface)
+│       │   └── EventHistoryRepository.ts
+│       ├── provided/              # 인프라에서 제공받는 구현체 (Adapter)
+│       │   └── EventHistoryRepositoryImpl.ts
+│       ├── EventHistoryCommand.ts
+│       ├── EventHistoryQuery.ts
+│       └── service/
+│           └── EventHistoryService.ts
+│
+└── store/                        # (선택) 상태 관리 (Pinia 등 사용 시)
+    └── ...
 ```
