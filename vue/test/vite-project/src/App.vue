@@ -8,11 +8,13 @@ import WatchTest2 from "./views/watch/WatchTest2.vue";
 import StoreTest from "./views/store/StoreTest.vue";
 import StoreTest2 from "./views/store/StoreTest2.vue";
 import PopupTest from "./views/popup/PopupTest.vue";
+import WatchOrderTest from "./views/watch/WatchOrderTest.vue";
+import WatchOrderAsyncTest from "./views/watch/WatchOrderAsyncTest.vue";
 </script>
 
 <template>
 <!--  <AppTest/>-->
-  <TickTest/>
+<!--  <TickTest/>-->
 <!--  <ComposableTest/>-->
 <!--  <AsyncTest/>-->
 <!--    <WatchTest/>-->
@@ -20,6 +22,8 @@ import PopupTest from "./views/popup/PopupTest.vue";
 <!--  <StoreTest/>-->
 <!--  <StoreTest2/>-->
 <!--  <PopupTest/>-->
+<!--  <WatchOrderTest/>-->
+  <WatchOrderAsyncTest/>
 </template>
 
 <style scoped>
