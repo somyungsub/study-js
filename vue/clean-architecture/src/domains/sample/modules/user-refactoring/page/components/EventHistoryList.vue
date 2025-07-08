@@ -47,5 +47,5 @@ onMounted(async () => {
   </div>
 </template>
 <style scoped>
-@import "UserRefactoringChild.css";
+@import "./UserRefactoringChild.css";
 </style>

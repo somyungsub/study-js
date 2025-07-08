@@ -44,5 +44,5 @@ template 영역에 추가해야하거나 해야하는데
 </template>
 
 <style scoped>
-@import "UserRefactoringChild.css";
+@import "./UserRefactoringChild.css";
 </style>
