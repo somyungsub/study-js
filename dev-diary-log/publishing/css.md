@@ -23,6 +23,7 @@
 - 크기 갖음(width 기본 100%)
 - 높이, 넓이 설정 (width, height 설정 o)
 - 상하좌우 마진 갖음 -> 크기가 있기 때문
+- 가운데 정렬 -> margin: auto (block 에만 먹힘)
 - 보통 세로배치 하고싶을때
     - 가로 배치로 해야할 경우
     - float, overflow 속성활용 : overflow: hidden, float: left 등, -> 1px도 오차 허용 안됨, box-sizing: border-box; 속성으로 배치
@@ -73,6 +74,7 @@ section article {
 ```
 
 ### inline-block
+
 - 가로배치 (inline 속성)
 - 기본너비는 컨텐츠의 너비값 (inline 속성)
 - 크기 갖음 (block 속성)
