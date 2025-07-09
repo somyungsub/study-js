@@ -1,0 +1,101 @@
+# css 관련 내용 정리
+
+## display
+
+- display 속성중에 inline, block은 암기수준으로 이해하기
+- block 이냐 inline 이냐에 따라서 너비 자동세팅, 마진 적용여부 등이 달라짐
+- 따라서, 이걸 제대로 이해하지 못하면, 레이아웃 설정하기 쉽지 않음
+- 태그 요소들 잘 기억하기
+- 그리고 속성으로 block, inline, inline-block을 명시하여 강제하 시킬 수 있고,
+- 이런걸 통해서 레이아웃 퍼블리싱 잡는 핵심이 되는 개념
+- 인프런 강의 참고
+  ![inline-block.png](img/inline-block.png)
+
+### inline
+
+- 가로 배치
+- 크기없음(width x) -> 따라서 width 줘봐야 무의미, 크기를 주려면 -> block or inline-block
+- 상하마진 속성x -> 크기가 없기 때문, 기본크기만 갖음, css로 설정할 수 없음
+
+### block
+
+- 세로 배치
+- 크기 갖음(width 기본 100%)
+- 높이, 넓이 설정 (width, height 설정 o)
+- 상하좌우 마진 갖음 -> 크기가 있기 때문
+- 보통 세로배치 하고싶을때
+    - 가로 배치로 해야할 경우
+    - float, overflow 속성활용 : overflow: hidden, float: left 등, -> 1px도 오차 허용 안됨, box-sizing: border-box; 속성으로 배치
+        - float 를 사용할 경우, clear: both 등 다음 속성 영향 받는 경우 해제 필요할 수 있음
+    - inline-block 활용: text-align 등 margin : auto 등 다양한 방식으로 레이아웃 설정할 순 있음
+
+```css
+/* 1. float , overflow 를 이용한 가로배치 */
+section {
+    border: 10px solid black;
+    width: 400px;
+    overflow: hidden;
+}
+
+section article {
+    width: 100px;
+    height: 50px;
+    border: 2px solid blue;
+    background-color: orange;
+    float: left;
+    box-sizing: border-box;
+}
+```
+
+```css
+/* 
+    2. display: inline-block 를 이용한 가로배치
+    - section에 width를 줄경우, 가로 배치 문제 되지 않게 가능하나
+    - 마지막 article 넓이가 그만큼 줄어든 현상이 있음 
+*/
+section {
+    border: 5px solid black;
+    /*width: 400px;*/
+    text-align: center;
+    /*overflow: hidden;*/
+    /*white-space: nowrap;*/
+}
+
+section article {
+    width: 100px;
+    height: 50px;
+    background-color: orange;
+    border: 2px solid blue;
+    /*display: inline;*/
+    display: inline-block;
+    box-sizing: border-box;
+}
+```
+
+### inline-block
+- 가로배치 (inline 속성)
+- 기본너비는 컨텐츠의 너비값 (inline 속성)
+- 크기 갖음 (block 속성)
+- width, height 설정 가능 (block 속성)
+- 상하마진은 갖을 수 없음 (inline 속성)
+- 블록과 인라인 속성을 결합한 형태로 block
+  - 가로배치하면서, 크기를 갖어야할 때 활용
+  - block -> 가로 배치만 ? inline
+  ```css
+  section {
+      border: 5px solid black;
+      /*width: 400px;*/
+      text-align: center;
+      /*overflow: hidden;*/
+      /*white-space: nowrap;*/
+  }
+  
+  section article {
+      width: 100px;
+      height: 50px;
+      background-color: orange;
+      border: 2px solid blue;
+      display: inline;
+      /*box-sizing: border-box;*/
+  }
+  ```
