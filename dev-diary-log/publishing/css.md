@@ -151,3 +151,9 @@ a:hover {
 
 
 ```
+
+## 애니메이션
+- animation, @keyframes 등 활용하여 움직이는 현상 만들어보기
+  - position -> top, left 등 설정한걸 그대로 사용해야함
+  - animation-delay : 애니메이션 딜레이 시킨 후 시작
+- 다양한 css, 셀렉터 (nth-child, ...), calc 등 활용

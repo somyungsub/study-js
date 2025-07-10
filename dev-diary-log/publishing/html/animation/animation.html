@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .loading {
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+        position: relative;
+    }
+    .loading span {
+        width: 50px;
+        height: 50px;
+        /*border: 1px solid dodgerblue;*/
+        background-color: grey;
+        /*animation: loading 1s linear infinite;*/
+        animation: loading 1.5s infinite;
+        position: absolute;
+    }
+
+    .loading span:nth-child(1) {
+        /*animation-delay: 0s;*/
+    }
+
+    .loading span:nth-child(2) {
+        animation-delay: 0.5s;
+    }
+
+    @keyframes loading {
+        0%{
+            top: 0;
+            left: 0;
+        }
+        25%{
+            /*top: 0;*/
+            /*left: 100%;*/
+            top: 0;
+            left: calc(100% - 50px);
+            background-color: red;
+        }
+        50%{
+            /*top: 100%;*/
+            /*left: 100%;*/
+            top: calc(100% - 50px);
+            left: calc(100% - 50px);
+            background-color: green;
+        }
+        75%{
+            /*top: 100%;*/
+            /*left: 0;*/
+            top: calc(100% - 50px);
+            left: 0;
+            background-color: orange;
+        }
+        100%{
+            top: 0;
+            left: 0;
+            background-color: grey;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="loading">
+    <span></span>
+    <span></span>
+  </div>
+</body>
+</html>
