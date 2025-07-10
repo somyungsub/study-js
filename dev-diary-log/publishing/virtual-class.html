@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+      .box a {
+          width: 200px;
+          text-decoration: none;
+          color: #333;
+          background-color: #fff;
+          border: 1px solid black;
+          border-radius: 5px;
+          display: inline-block;
+          text-align: center;
+          transition: 1s; /* 트랜지션은 호버가 아닌 곳에 넣어줘야 호버 on/off에 잘 적용됨 */
+      }
+
+      .box a:hover {
+          color: white;
+          background-color: #000;
+      }
+
+      .box a:nth-child(2) {
+          color: orange;
+      }
+
+      .box a:nth-of-type(3) {
+          color: blue;
+      }
+
+      .tab > .btn span {
+          margin-top: 50px;
+          margin-right: -5px;
+          display: inline-block;
+          width: 100px;
+          text-align: center;
+          border: 2px black solid;
+          border-radius: 10px 10px 0 0;
+          cursor: pointer;
+      }
+      .tab > .btn span:first-child {
+          background-color: grey;
+      }
+      .tab > .btn span:last-child {
+          background-color: dimgrey;
+      }
+
+      .tab > .grid {
+          border: 1px solid black;
+          width: 250px
+      }
+
+      .tab > .grid a{
+          display: block;
+          text-decoration: none;
+          color: lightgrey;
+          border-bottom: 1px solid black;
+          margin: 5px;
+      }
+      .tab > .grid a:first-child {
+          color: red;
+      }
+      .tab > .grid a:nth-child(2) {
+          color: orange;
+      }
+      .tab > .grid a:last-child {
+          font-size: 20px;
+      }
+  </style>
+</head>
+<body>
+<div class="box">
+  <a href="https://www.naver.com" target="_blank">네이버</a>
+  <a href="https://www.google.com" target="_blank">구글</a>
+  <a href="https://www.daum.net" target="_blank">다음</a>
+</div>
+<br/>
+<div class="box">
+  <a href="https://www.naver.com" target="_blank">네이버</a>
+  <div>nth-of-type 확인</div>
+  <a href="https://www.google.com" target="_blank">구글</a>
+  <a href="https://www.daum.net" target="_blank">다음</a>
+</div>
+
+<br/>
+
+<div class="tab">
+  <div class="btn">
+    <span>탭1</span>
+    <span>탭2</span>
+  </div>
+  <div class="grid">
+    <a href="#">개선작업1</a>
+    <a href="#">개선작업2</a>
+    <a href="#">개선작업3</a>
+  </div>
+</div>
+</body>
+</html>

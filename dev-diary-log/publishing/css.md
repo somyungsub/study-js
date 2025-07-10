@@ -119,3 +119,35 @@ section article {
 }
 ```
 
+## 3. 가상클래스
+- hover
+- transition
+- nth-child : 순서 선택, class 없이 선택할때 유용, 태그를 체크 하지 않아서, 유지보수할 때 힘들수 있음
+- nth-of-type : 순서선택, 태그 체크
+- first-child, last-child
+
+```css
+a {
+  color: red;
+  transition: 1s;
+}
+
+a:hover {
+  color: black;
+}
+
+.box div {
+  width: 100px;
+  height: 50px;
+}
+
+.box div:nth-child(1) {
+/*  */
+}
+
+.box div:nth-child(2) {
+  /*  */
+}
+
+
+```
