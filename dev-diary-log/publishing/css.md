@@ -103,6 +103,7 @@ section article {
   ```
   
 ## 2.position
+![position.png](img/position.png)
 - 부모요소(relative), 자식요소(absolute)
 - position 이 있어야 top,left,right,bottom 같은 위치 관련 속성이 의미 있음
 - top: 부모 값 -> 벗어남, %로 주면 상대값으로 이동하므로, 부모의 px가 변경되더라도, 자식요소는 변경하지 않아도 됨
