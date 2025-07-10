@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+      .parent {
+          /*position: relative;*/
+          position: relative;
+          background-color: red;
+          width: 200px;
+          height: 200px;
+          border: 1px solid red;
+      }
+
+      .parent {
+          /*position: relative;*/
+          position: relative;
+          background-color: red;
+          width: 200px;
+          height: 200px;
+          border: 1px solid red;
+      }
+
+      .child {
+          position: absolute;
+          background-color: #42b983;
+          width: 50px;
+          height: 50px;
+          border: 1px solid green;
+      }
+
+      .child-basic {
+          /*top: 0;*/
+          bottom: 0;
+          right: 0;
+          /*left: 20px;*/
+      }
+
+      .middle-position {
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+      }
+
+      .percent-left {
+          left: 100%;
+      }
+
+      .percent-top {
+          top: 100%;
+      }
+
+      .percent-both {
+          left: 100%;
+          top: 100%;
+      }
+
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="child child-basic"></div>
+  </div>
+
+  <br/>
+
+  <div class="parent">
+    <div class="child middle-position"></div>
+  </div>
+
+  <br/>
+
+  <div class="parent middle-position">
+  </div>
+
+  <br/>
+
+  <div class="parent">
+    <div class="child percent-left"></div>
+    <div class="child percent-top"></div>
+    <div class="child percent-both"></div>
+  </div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 # css 관련 내용 정리
 
-## display
+## 1.display
 
 - display 속성중에 inline, block은 암기수준으로 이해하기
 - block 이냐 inline 이냐에 따라서 너비 자동세팅, 마진 적용여부 등이 달라짐
@@ -101,3 +101,20 @@ section article {
       /*box-sizing: border-box;*/
   }
   ```
+  
+## 2.position
+- 부모요소(relative), 자식요소(absolute)
+- position 이 있어야 top,left,right,bottom 같은 위치 관련 속성이 의미 있음
+- top: 부모 값 -> 벗어남, %로 주면 상대값으로 이동하므로, 부모의 px가 변경되더라도, 자식요소는 변경하지 않아도 됨
+  - 따라서, 자식요소는 최대한 %를 활용
+
+```css
+.parent {
+  position: relative;
+}
+
+.child {
+  position: absolute;
+}
+```
+
