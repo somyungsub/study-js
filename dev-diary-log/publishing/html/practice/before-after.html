@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+      a{
+          text-decoration: none;
+          color: grey;
+      }
+    .gnb {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .gnb a{}
+    .gnb a:before {
+        content: '01';
+        color: #fff;
+        background-color: #535bf2;
+        padding: 2px 5px;
+        margin-right: 5px;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        font-size: 12px;
+    }
+    .gnb a:after {
+        content: 'update';
+        color: #fff;
+        background-color: dodgerblue;
+        margin-left: 5px;
+        border-radius: 5px;
+        padding: 2px 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="gnb">
+    <a href="#">비포-에프터 테스트하기</a>
+  </div>
+</body>
+</html>
