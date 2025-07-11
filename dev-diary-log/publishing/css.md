@@ -161,3 +161,4 @@ a:hover {
   - position -> top, left 등 설정한걸 그대로 사용해야함
   - animation-delay : 애니메이션 딜레이 시킨 후 시작
 - 다양한 css, 셀렉터 (nth-child, ...), calc 등 활용
+- transition 줄때, 같은 속성이 있어야 적용됨
