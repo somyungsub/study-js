@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+      body {
+      }
+      a {
+          text-decoration: none;
+          color: #cccccc;
+      }
+
+      .dropdown {
+          /*border: 1px solid black;*/
+          width: 200px;
+      }
+
+      .dropdown-btn {
+          width: inherit;
+          /*width: 100%;*/
+          /*border: 1px solid black;*/
+          outline: none;
+          border: none;
+          cursor: pointer;
+          background-color: #42b983;
+          color: #de4343;
+      }
+
+      .dropdown-menu {
+          width: inherit;
+          /*width: 200px;*/
+          /*border: 1px solid black;*/
+          display: none;
+          text-align: center;
+      }
+
+      .dropdown:hover .dropdown-menu {
+          display: block;
+      }
+
+      .dropdown-menu a {
+          display: block;
+      }
+
+      .dropdown-menu a:hover {
+          background-color: orange;
+      }
+
+  </style>
+</head>
+<body>
+<div class="dropdown">
+  <button class="dropdown-btn">메뉴</button>
+  <div class="dropdown-menu">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Detail</a>
+    <a href="#">Contact</a>
+    <a href="#">Reservation</a>
+  </div>
+</div>
+</body>
+</html>
