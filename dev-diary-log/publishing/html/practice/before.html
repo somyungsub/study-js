@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="../../css/basic.css" rel="stylesheet" type="text/css">
+  <style>
+    body {
+        background: dodgerblue;
+    }
+
+    .gnb {
+        background: dodgerblue;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 50px;
+    }
+    .gnb a {
+        /*border: 1px solid black;*/
+        display: block;
+        margin: 10px;
+        color: white;
+        transition: 0.5s;
+    }
+    .gnb:hover a{
+        opacity: 0.3;
+    }
+
+    .gnb a:hover {
+        opacity: 1;
+    }
+    .gnb a:before {
+        opacity: 0;
+        content: "> ";
+    }
+    .gnb a:hover:before {
+        opacity: 1;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="gnb">
+    <a href="#">테스트1</a>
+    <a href="#">테스트2</a>
+    <a href="#">테스트3</a>
+    <a href="#">테스트4</a>
+  </div>
+</body>
+</html>
