@@ -162,3 +162,16 @@ a:hover {
   - animation-delay : 애니메이션 딜레이 시킨 후 시작
 - 다양한 css, 셀렉터 (nth-child, ...), calc 등 활용
 - transition 줄때, 같은 속성이 있어야 적용됨
+
+## float
+- 자식요소에서 float를 설정할 경우, 부모요소는 height 값을 잃게 된다
+  - 이런경우, 부모요소에 overflow: hidden을 줘서 height를 찾을 수 있음
+```css
+.parent {
+  overflow: hidden; /* 자식요소에 float가 존재할 경우, 부모요소에 overflow 속성을 줘야 height를 유지하게 됨. */
+}
+
+.child {
+  float: right;
+}
+```
