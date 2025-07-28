@@ -199,3 +199,16 @@ composable vs composables
 ✅ 전체 구조 매우 우수하고 표준 설계에 부합
 ✅ 단수형 계층 이름 → 추상화 계층 느낌이 강해져서 훨씬 명료
 ✅ modules로 하위 도메인 묶음 → 유지보수 최적
+
+
+
+## 타입스크립트 config 옵션
+| 옵션명                            | 설명                                       |
+| ------------------------------ | ---------------------------------------- |
+| `noImplicitAny`                | 암시적 any 사용 금지                            |
+| `strictNullChecks`             | `null`과 `undefined`를 철저히 구분              |
+| `strictFunctionTypes`          | 함수 타입 간 호환성 검사 강화                        |
+| `strictBindCallApply`          | `bind`, `call`, `apply` 사용 시 인자 검사 강화    |
+| `strictPropertyInitialization` | 클래스의 프로퍼티를 반드시 초기화하도록 강제                 |
+| `noImplicitThis`               | `this`의 타입이 암시적일 경우 오류 발생                |
+| `alwaysStrict`                 | 파일을 자동으로 strict mode(`"use strict"`)로 실행 |

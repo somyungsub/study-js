@@ -2,11 +2,10 @@ const registry = new Map<string, any>();
 
 export const ServiceRegistry = Object.freeze({
   get<T>(name: string): T {
-    const service = registry.get(name);
-    if (!service) {
+    if (!this.has(name)) {
       throw new Error(`Service "${name}" not registered`);
     }
-    return service;
+    return registry.get(name);
   },
   set<T>(name: string, value: T): void {
     if (this.has(name)) {
