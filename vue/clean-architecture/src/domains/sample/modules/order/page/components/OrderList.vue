@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {useOrderList} from "../../composable/useOrderList.ts";
 import {onBeforeMount, onMounted, ref} from "vue";
-import type {Order} from "../../domain/entity/Order.ts";
+import {useOrderList} from "@/domains/sample/modules/order/adapter/composable/useOrderList";
+import type {Order} from "@/domains/sample/modules/order/domain/entity/Order";
 
 const emit = defineEmits(['composable']);
 const _state = {

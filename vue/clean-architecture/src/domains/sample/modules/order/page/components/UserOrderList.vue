@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {useOrderUser} from "../../composable/useOrderUser.ts";
 import {onBeforeMount, onMounted} from "vue";
+import {useOrderUser} from "@/domains/sample/modules/order/adapter/composable/useOrderUser";
 
 const emit = defineEmits(['composable']);
 

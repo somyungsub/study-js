@@ -4,9 +4,9 @@ import {ProviderRegistry} from "@/common/core/registry/ProviderRegistry";
 import type {OrderUseCase} from "@/domains/sample/modules/order/application/provided/OrderUseCase";
 import type {UserQueryIn} from "@/domains/sample/modules/user-refactoring/application/user/provided/UserQueryIn";
 import type {OrderApiOut} from "@/domains/sample/modules/order/application/required/OrderApiOut";
-import {createApi} from "@/domains/sample/modules/order/infrastructure/api/orderApi";
 import type {Order} from "@/domains/sample/modules/order/domain/entity/Order";
-import type {User} from "@/domains/sample/modules/user-refactoring/domain/entity/User";
+import type {User} from "@/domains/sample/modules/user-refactoring/domain/user/entity/User";
+import {createApi} from "@/domains/sample/modules/order/adapter/api/orderApi";
 
 @Service
 export class OrderUseCaseService implements OrderUseCase {

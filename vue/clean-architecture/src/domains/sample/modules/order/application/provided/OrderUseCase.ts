@@ -1,5 +1,5 @@
-import  {type Order} from "../../domain/entity/Order.ts";
-import type {User} from "../../../user-refactoring/domain/entity/User.ts";
+import type {Order} from "@/domains/sample/modules/order/domain/entity/Order";
+import type {User} from "@/domains/sample/modules/user-refactoring/domain/user/entity/User";
 
 export interface OrderUseCase {
   // 1. 주문목록 전제 조회 (하위컴포넌트1 : OrderList.vue)

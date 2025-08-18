@@ -1,8 +1,8 @@
-import {Order} from "../../domain/entity/Order.ts";
-import {OrderItem} from "../../domain/entity/OrderItem.ts";
-import type {OrderApiOut} from "../../application/required/OrderApiOut.ts";
+import {Order} from "@/domains/sample/modules/order/domain/entity/Order";
+import {OrderItem} from "@/domains/sample/modules/order/domain/entity/OrderItem";
+import type {OrderApiOut} from "@/domains/sample/modules/order/application/required/OrderApiOut";
 
-// TODO 임시데이터
+// 임시데이터
 const orderRepository: Order[] = [
   Order.from(
     {

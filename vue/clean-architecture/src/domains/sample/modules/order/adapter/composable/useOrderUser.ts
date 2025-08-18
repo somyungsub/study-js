@@ -1,9 +1,9 @@
-import {createService} from "../application/OrderUseCaseService.ts";
-import {createService as createUserService} from "../../user-refactoring/application/user/UserService.ts";
 import {type Ref, ref} from "vue";
-import type {Order} from "../domain/entity/Order.ts";
-import type {User} from "../../user-refactoring/domain/entity/User.ts";
-import type {OrderItem} from "../domain/entity/OrderItem.ts";
+import type {User} from "@/domains/sample/modules/user-refactoring/domain/user/entity/User";
+import type {Order} from "@/domains/sample/modules/order/domain/entity/Order";
+import {createService} from "@/domains/sample/modules/order/application/OrderUseCaseService";
+import {createService as createUserService} from "@/domains/sample/modules/user-refactoring/application/user/UserService";
+import type {OrderItem} from "@/domains/sample/modules/order/domain/entity/OrderItem";
 
 export type useOrderUserType = {
   orderUsers: Ref<userOrderDataType[]>;

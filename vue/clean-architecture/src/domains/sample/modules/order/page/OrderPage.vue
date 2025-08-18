@@ -1,11 +1,11 @@
 <script setup lang="ts">
 
-import {type ChildComposableType, useOrder} from "../composable/useOrder.ts";
-import UserOrderList from "./components/UserOrderList.vue";
-import OrderList from "./components/OrderList.vue";
 import {onMounted, ref} from "vue";
-import type {useOrderUserType} from "../composable/useOrderUser.ts";
-import type {useOrderListType} from "../composable/useOrderList.ts";
+import {type ChildComposableType, useOrder} from "@/domains/sample/modules/order/adapter/composable/useOrder";
+import type {useOrderUserType} from "@/domains/sample/modules/order/adapter/composable/useOrderUser";
+import type {useOrderListType} from "@/domains/sample/modules/order/adapter/composable/useOrderList";
+import OrderList from "@/domains/sample/modules/order/page/components/OrderList.vue";
+import UserOrderList from "@/domains/sample/modules/order/page/components/UserOrderList.vue";
 
 const _state = {
   // TODO 여기에서 상태값 반응형데이터로 조절하는게 맞을까? composable에 캡슐화가 맞을까?

@@ -1,5 +1,5 @@
-import {createService} from "../application/OrderUseCaseService.ts";
-import type {Order} from "../domain/entity/Order.ts";
+import type {Order} from "@/domains/sample/modules/order/domain/entity/Order";
+import {createService} from "@/domains/sample/modules/order/application/OrderUseCaseService";
 
 export type useOrderListType = {
   fetchAllOrder(): Promise<Order[]>;
