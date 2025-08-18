@@ -1,5 +1,5 @@
-import {ToString} from "../../../../../../common/core/decorator/ToString.ts";
-import type {OrderItem} from "./OrderItem.ts";
+import {ToString} from "@/common/core/decorator/ToString";
+import type {OrderItem} from "@/domains/sample/modules/order/domain/entity/OrderItem";
 
 @ToString
 export class Order {

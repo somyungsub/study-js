@@ -1,5 +1,5 @@
-import {ToString} from "../../../../../../common/core/decorator/ToString.ts";
-import {Currency, Price} from "../vo/Price.ts";
+import {ToString} from "@/common/core/decorator/ToString";
+import {Currency, Price} from "@/domains/sample/modules/order/domain/vo/Price";
 
 @ToString
 export class OrderItem {

@@ -1,6 +1,6 @@
-import type {useOrderListType} from "./useOrderList.ts";
 import {type Ref, ref} from "vue";
-import type {useOrderUserType} from "./useOrderUser.ts";
+import type {useOrderListType} from "@/domains/sample/modules/order/adapter/composable/useOrderList";
+import type {useOrderUserType} from "@/domains/sample/modules/order/adapter/composable/useOrderUser";
 
 export type useOrderType = {
   sumUserOrderItemPrice: Ref<number>;

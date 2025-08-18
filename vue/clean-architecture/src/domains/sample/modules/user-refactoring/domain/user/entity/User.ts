@@ -1,6 +1,6 @@
-import {GENDER, type Gender, USER_TYPES, type UserType} from "../constant/UserTypes.ts";
-import {Email} from "../vo/Email.ts";
 import {ToString} from "@/common/core/decorator/ToString.ts";
+import {Email} from "@/domains/sample/modules/user-refactoring/domain/user/vo/Email";
+import {GENDER, type Gender, USER_TYPES, type UserType} from "@/domains/sample/modules/user-refactoring/domain/user/constant/UserTypes";
 
 @ToString([
   {'_email': (th: User) => th.email.fullName()}

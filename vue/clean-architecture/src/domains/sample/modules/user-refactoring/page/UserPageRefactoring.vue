@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import EventHistoryList from "./components/EventHistoryList.vue";
-import UserList from "./components/UserList.vue";
 import {onBeforeMount} from "vue";
 import {CONTEXT_KEYS, ContextContainer} from "@/common/core/context/ContextContainer";
 import {useUser} from "@/domains/sample/modules/user-refactoring/adapter/user/composable/useUser";
 import {useUserComposition} from "@/domains/sample/modules/user-refactoring/adapter/user/composable/useUserComposition";
+import UserList from "@/domains/sample/modules/user-refactoring/page/components/UserList.vue";
+import EventHistoryList from "@/domains/sample/modules/user-refactoring/page/components/EventHistoryList.vue";
 
 // 상위 전용
 const useUserPageComp = useUser();
