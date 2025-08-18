@@ -3,9 +3,12 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
-    "moduleResolution": "node16",
-    "strict": true,         // 여러 개별 옵션(noImplicitAny, strictNullChecks, 등)을 동시에 켬
-    "noImplicitAny": true,  // false 경우, 암묵적 any 타입 허용
+//    "moduleResolution": "node16",
+    "moduleResolution": "bundler",
+    "strict": true,
+    // 여러 개별 옵션(noImplicitAny, strictNullChecks, 등)을 동시에 켬
+    "noImplicitAny": true,
+    // false 경우, 암묵적 any 타입 허용
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "strictFunctionTypes": true,
