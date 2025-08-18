@@ -1,4 +1,4 @@
-import {watch} from "vue";
+import {ref, type Ref, watch} from "vue";
 import type {useUserType} from "@/domains/sample/modules/user-refactoring/adapter/user/composable/useUser";
 import type {useUserListType} from "@/domains/sample/modules/user-refactoring/adapter/user/composable/useUserList";
 import type {
@@ -10,12 +10,14 @@ export type useUserCompositionType = {
     composable: ComposableType[T],
     type: T
   ): void;
+  totalCount: Ref<number>;
 }
 
 type ComposableType = {
   useUser: useUserType;
   useUserList: useUserListType | null;
   useEventHistory: useEventHistoryType | null;
+  totalCount: Ref<number>
 };
 type ChildComposableType = 'useUserList' | 'useEventHistory';
 
@@ -38,7 +40,8 @@ export function useUserComposition(useUser: useUserType): useUserCompositionType
   const _state: ComposableType = {
     useUser: useUser,
     useUserList: null,
-    useEventHistory: null
+    useEventHistory: null,
+    totalCount: ref(0)
   };
 
   function setChildComposable<T extends ChildComposableType>(
@@ -56,7 +59,7 @@ export function useUserComposition(useUser: useUserType): useUserCompositionType
   function updateUserCount(type: ChildComposableType, value: any[]) {
     const size: number = value?.length;
     countObj.setCount(type, size);
-    _state.useUser.updateUserCount(countObj.total());
+    _state.totalCount.value = countObj.total();
   }
 
   function registerWatch(type: ChildComposableType, sourceFunc: any): void {
@@ -68,6 +71,7 @@ export function useUserComposition(useUser: useUserType): useUserCompositionType
   }
 
   return {
-    setChildComposable
+    setChildComposable,
+    totalCount: _state.totalCount
   }
 }

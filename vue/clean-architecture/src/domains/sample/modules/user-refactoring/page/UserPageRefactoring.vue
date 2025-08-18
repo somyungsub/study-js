@@ -26,11 +26,10 @@ onBeforeMount(() => {
   </div>
 
   <div class="section">
-<!--    <EventHistoryList @composable="(comp) => useUserCompositionComp.setChildComposable(comp, 'useEventHistory')"/>-->
-    <EventHistoryList/>
+    <EventHistoryList @composable="(comp) => useUserCompositionComp.setChildComposable(comp, 'useEventHistory')"/>
   </div>
   <div class="summary">
-    상위영역 (사용자 + 히스토리 목록 합계) : <strong>{{ useUserPageComp.userCount }}</strong>
+    상위영역 (사용자 + 히스토리 목록 합계) : <strong>{{ useUserCompositionComp.totalCount}}</strong>
   </div>
 </template>
 
