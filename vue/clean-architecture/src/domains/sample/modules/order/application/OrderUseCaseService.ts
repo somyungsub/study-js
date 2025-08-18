@@ -1,12 +1,12 @@
-import type {Order} from "../domain/entity/Order.ts";
-import type {OrderUseCase} from "./provided/OrderUseCase.ts";
-import type {UserQueryIn} from "../../user-refactoring/application/user/provided/UserQueryIn.ts";
 // import {orderApi} from "../infrastructure/api/orderApi.ts";
-import {Service} from "../../../../../common/core/decorator/Service.ts";
-import {ServiceRegistry} from "../../../../../common/core/registry/ServiceRegistry.ts";
-import type {User} from "../../user-refactoring/domain/entity/User.ts";
-import type {OrderApiOut} from "./required/OrderApiOut.ts";
-import {createApi} from "../infrastructure/api/orderApi.ts";
+import {Service} from "@/common/core/decorator/ProviderDecorator";
+import {ProviderRegistry} from "@/common/core/registry/ProviderRegistry";
+import type {OrderUseCase} from "@/domains/sample/modules/order/application/provided/OrderUseCase";
+import type {UserQueryIn} from "@/domains/sample/modules/user-refactoring/application/user/provided/UserQueryIn";
+import type {OrderApiOut} from "@/domains/sample/modules/order/application/required/OrderApiOut";
+import {createApi} from "@/domains/sample/modules/order/infrastructure/api/orderApi";
+import type {Order} from "@/domains/sample/modules/order/domain/entity/Order";
+import type {User} from "@/domains/sample/modules/user-refactoring/domain/entity/User";
 
 @Service
 export class OrderUseCaseService implements OrderUseCase {
@@ -15,7 +15,7 @@ export class OrderUseCaseService implements OrderUseCase {
     private orderApi: OrderApiOut
   ) {
     this.orderApi = createApi.api;
-    this.userQueryService = ServiceRegistry.get<UserQueryIn>("UserQueryService"); // DI
+    this.userQueryService = ProviderRegistry.get<UserQueryIn>("UserQueryService"); // DI
   }
 
   async fetchAllOrder(): Promise<Order[]> {
@@ -29,5 +29,5 @@ export class OrderUseCaseService implements OrderUseCase {
 }
 
 export const createService = () => ({
-  useCase: ServiceRegistry.get<OrderUseCase>("OrderUseCaseService")
+  useCase: ProviderRegistry.get<OrderUseCase>("OrderUseCaseService")
 });

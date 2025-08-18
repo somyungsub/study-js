@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
-import {User} from "../../domain/entity/User.ts";
-import {useUserList} from "../../composable/useUserList.ts";
 import {onBeforeMount, onMounted} from "vue";
-import {EventKey} from "../../../../../../common/constant/EventKey.ts";
+import {useUserList} from "@/domains/sample/modules/user-refactoring/adapter/user/in/composable/useUserList";
+import {EventKey} from "@/common/constant/EventKey";
+import {User} from "@/domains/sample/modules/user-refactoring/domain/entity/User";
 
 const emit = defineEmits([EventKey.COMPOSABLE]);
 const useUserListComp = useUserList();

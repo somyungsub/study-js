@@ -1,6 +1,6 @@
 const registry = new Map<string, any>();
 
-export const ServiceRegistry = Object.freeze({
+export const ProviderRegistry = Object.freeze({
   get<T>(name: string): T {
     if (!this.has(name)) {
       throw new Error(`Service "${name}" not registered`);

@@ -1,6 +1,6 @@
 import {type Ref, ref} from "vue";
-import {userApi} from "../api/userApi.ts";
-import {eventHistoryApi} from "../api/eventHistoryApi.ts";
+import {userApi} from "../api/userApi";
+import {eventHistoryApi} from "../api/eventHistoryApi";
 
 
 enum USER_TYPE {

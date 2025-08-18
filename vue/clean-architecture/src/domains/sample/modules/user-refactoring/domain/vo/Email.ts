@@ -1,4 +1,4 @@
-import {ToString} from "../../../../../../common/core/decorator/ToString.ts";
+import {ToString} from "@/common/core/decorator/ToString";
 
 @ToString
 export class Email {

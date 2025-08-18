@@ -2,13 +2,13 @@ import {type User} from "../../domain/entity/User.ts";
 import type {UserQueryIn} from "./provided/UserQueryIn.ts";
 import type {UserCommandIn} from "./provided/UserCommandIn.ts";
 import type {UserBizIn} from "./provided/UserBizIn.ts";
-import {Around} from "../../../../../../common/core/decorator/Around.ts";
-import {Before} from "../../../../../../common/core/decorator/Before.ts";
-import {After} from "../../../../../../common/core/decorator/After.ts";
-import {Service} from "../../../../../../common/core/decorator/Service.ts";
-import {ServiceRegistry} from "../../../../../../common/core/registry/ServiceRegistry.ts";
 import type {UserApiOut} from "./required/UserApiOut.ts";
-import {createOutPort} from "../../infrastructure/api/UserRestApi.ts";
+import {Service} from "@/common/core/decorator/ProviderDecorator";
+import {createOutPort} from "@/domains/sample/modules/user-refactoring/adapter/user/out/api/UserRestApi";
+import {Before} from "@/common/core/decorator/Before";
+import {After} from "@/common/core/decorator/After";
+import {Around} from "@/common/core/decorator/Around";
+import {ProviderRegistry} from "@/common/core/registry/ProviderRegistry";
 
 @Service
 class UserQueryService implements UserQueryIn {
@@ -60,10 +60,10 @@ class UserUseCaseAopService implements UserBizIn {
 
 // TODO 필요한 유스케이스를 늘려서 사용하기
 export const createService = () => ({
-  query: ServiceRegistry.get<UserQueryIn>("UserQueryService"),
-  command: ServiceRegistry.get<UserCommandIn>("UserCommandService"),
-  useCase: ServiceRegistry.get<UserBizIn>("UserUseCaseAopService"),   // AOP 기능 추가 된 서비스
-  // useCase: ServiceRegistry.get<UserUseCase>("UserUseCaseService"),   // 기본 기존 서비스
+  query: ProviderRegistry.get<UserQueryIn>("UserQueryService"),
+  command: ProviderRegistry.get<UserCommandIn>("UserCommandService"),
+  useCase: ProviderRegistry.get<UserBizIn>("UserUseCaseAopService"),   // AOP 기능 추가 된 서비스
+  // useCase: ProviderRegistry.get<UserUseCase>("UserUseCaseService"),   // 기본 기존 서비스
 
   // query: new UserQueryService(),
   // command: new UserCommandService(),

@@ -1,9 +1,9 @@
-import {User} from "../../domain/entity/User.ts";
-import {GENDER, USER_TYPES} from "../../domain/constant/UserTypes.ts";
-import {Email} from "../../domain/vo/Email.ts";
-import type {UserApiOut} from "../../application/user/required/UserApiOut.ts";
-import {WebApi} from "../../../../../../common/core/decorator/WebApi.js";
-import {ServiceRegistry} from "../../../../../../common/core/registry/ServiceRegistry.js";
+import {Email} from "@/domains/sample/modules/user-refactoring/domain/vo/Email";
+import {GENDER, USER_TYPES} from "@/domains/sample/modules/user-refactoring/domain/constant/UserTypes";
+import {WebApi} from "@/common/core/decorator/ProviderDecorator";
+import type {UserApiOut} from "@/domains/sample/modules/user-refactoring/application/user/required/UserApiOut";
+import {User} from "@/domains/sample/modules/user-refactoring/domain/entity/User";
+import {ProviderRegistry} from "@/common/core/registry/ProviderRegistry";
 
 // 유저 테스트 데이터
 const userRepository: any[] = [
@@ -15,7 +15,7 @@ const userRepository: any[] = [
 class UserRestApi implements UserApiOut {
   async fetchAllUser(): Promise<User[]> {
     // TODO 서버 api 통신후 response data -> 도메인 entity로 변환 작업, 현재는 샘플 data -> User entity, from으로 매핑
-    return await Promise.resolve(userRepository).then(values => values.map(User.from));
+    return await Promise.resolve(userRepository).then((values) => values.map(User.from));
   }
 
   async save(user: User): Promise<number> {
@@ -36,6 +36,6 @@ function includeUser(user: User) {
 export const createOutPort: {
   api: UserApiOut;
 } = {
-  api: ServiceRegistry.get<UserApiOut>("UserRestApi")
+  api: ProviderRegistry.get<UserApiOut>("UserRestApi")
   // api: new UserRestApi()
 }

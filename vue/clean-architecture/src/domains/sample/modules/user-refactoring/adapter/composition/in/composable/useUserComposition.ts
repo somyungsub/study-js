@@ -1,7 +1,9 @@
-import type {useUserListType} from "../useUserList.ts";
-import type {useEventHistoryType} from "../useEventHistory.ts";
-import type {useUserType} from "../useUser.ts";
 import {watch} from "vue";
+import type {useUserType} from "@/domains/sample/modules/user-refactoring/adapter/user/in/composable/useUser";
+import type {useUserListType} from "@/domains/sample/modules/user-refactoring/adapter/user/in/composable/useUserList";
+import type {
+  useEventHistoryType
+} from "@/domains/sample/modules/user-refactoring/adapter/event/in/composable/useEventHistory";
 
 export type useUserCompositionType = {
   setChildComposable<T extends ChildComposableType>(

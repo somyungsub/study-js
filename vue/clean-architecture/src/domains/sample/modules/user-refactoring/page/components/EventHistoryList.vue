@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
-import {UserEventHistory} from "../../domain/entity/UserEventHistory.ts";
-import {useEventHistory} from "../../composable/useEventHistory.ts";
 import {onBeforeMount, onMounted} from "vue";
-import {EventKey} from "../../../../../../common/constant/EventKey.ts";
+import {EventKey} from "@/common/constant/EventKey";
+import {UserEventHistory} from "@/domains/sample/modules/user-refactoring/domain/entity/UserEventHistory";
+import {useEventHistory} from "@/domains/sample/modules/user-refactoring/adapter/event/in/composable/useEventHistory";
 
 const emit = defineEmits([EventKey.COMPOSABLE]);
 const useEventHistoryComp = useEventHistory();

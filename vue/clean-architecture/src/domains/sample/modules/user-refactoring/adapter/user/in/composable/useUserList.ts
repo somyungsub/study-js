@@ -1,6 +1,6 @@
-import {User} from "../domain/entity/User.ts";
 import {type Ref, ref} from "vue";
-import {createService} from "../application/user/UserService.ts";
+import {User} from "@/domains/sample/modules/user-refactoring/domain/entity/User";
+import {createService} from "@/domains/sample/modules/user-refactoring/application/user/UserService";
 
 export type useUserListType = {
   users: Ref<any[]>;
