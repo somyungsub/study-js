@@ -186,3 +186,11 @@ modules/
   - application/system/provided, requireded
   - adapter/system/in/composable
   - adapter/system/out/api
+
+### 최종적으로 adapter, application 간소화 기반으로
+- adapter
+  - adapter/{모델}/composable (in)
+  - adapter/{모델}/api (out)
+- application
+  - application/{모델}/provided (in)
+  - application/{모델}/required (out)
