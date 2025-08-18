@@ -9,8 +9,8 @@ import type {
 import type {
   EventHistoryCommandIn
 } from "@/domains/sample/modules/user-refactoring/application/event/provided/EventHistoryCommandIn";
-import {createApi} from "@/domains/sample/modules/user-refactoring/adapter/event/out/api/EventWebRestApi";
 import {UserEventHistory} from "@/domains/sample/modules/user-refactoring/domain/event/entity/UserEventHistory";
+import {createApi} from "@/domains/sample/modules/user-refactoring/adapter/event/api/EventWebRestApi";
 
 @Service
 class EventHistoryService implements EventHistoryQueryIn {

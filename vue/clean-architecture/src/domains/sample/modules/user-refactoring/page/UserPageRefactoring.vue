@@ -3,10 +3,8 @@ import EventHistoryList from "./components/EventHistoryList.vue";
 import UserList from "./components/UserList.vue";
 import {onBeforeMount} from "vue";
 import {CONTEXT_KEYS, ContextContainer} from "@/common/core/context/ContextContainer";
-import {
-  useUserComposition
-} from "@/domains/sample/modules/user-refactoring/adapter/composition/in/composable/useUserComposition";
-import {useUser} from "@/domains/sample/modules/user-refactoring/adapter/user/in/composable/useUser";
+import {useUser} from "@/domains/sample/modules/user-refactoring/adapter/user/composable/useUser";
+import {useUserComposition} from "@/domains/sample/modules/user-refactoring/adapter/user/composable/useUserComposition";
 
 // 상위 전용
 const useUserPageComp = useUser();
