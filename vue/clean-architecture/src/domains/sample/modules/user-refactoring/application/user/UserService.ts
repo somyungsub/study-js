@@ -1,14 +1,14 @@
-import {type User} from "../../domain/entity/User.ts";
 import type {UserQueryIn} from "./provided/UserQueryIn.ts";
 import type {UserCommandIn} from "./provided/UserCommandIn.ts";
 import type {UserBizIn} from "./provided/UserBizIn.ts";
 import type {UserApiOut} from "./required/UserApiOut.ts";
 import {Service} from "@/common/core/decorator/ProviderDecorator";
-import {createOutPort} from "@/domains/sample/modules/user-refactoring/adapter/user/out/api/UserRestApi";
+import {createOutPort} from "@/domains/sample/modules/user-refactoring/adapter/user/out/api/UserWebApi";
 import {Before} from "@/common/core/decorator/Before";
 import {After} from "@/common/core/decorator/After";
 import {Around} from "@/common/core/decorator/Around";
 import {ProviderRegistry} from "@/common/core/registry/ProviderRegistry";
+import type {User} from "@/domains/sample/modules/user-refactoring/domain/user/entity/User";
 
 @Service
 class UserQueryService implements UserQueryIn {

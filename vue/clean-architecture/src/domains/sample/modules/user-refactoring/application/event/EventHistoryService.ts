@@ -1,4 +1,3 @@
-import {createApi} from "../../infrastructure/api/EventHistoryRestApi.ts";
 import {Service} from "@/common/core/decorator/ProviderDecorator";
 import {ProviderRegistry} from "@/common/core/registry/ProviderRegistry";
 import type {
@@ -7,10 +6,11 @@ import type {
 import type {
   EventHistoryApiOut
 } from "@/domains/sample/modules/user-refactoring/application/event/required/EventHistoryApiOut";
-import type {UserEventHistory} from "@/domains/sample/modules/user-refactoring/domain/entity/UserEventHistory";
 import type {
   EventHistoryCommandIn
 } from "@/domains/sample/modules/user-refactoring/application/event/provided/EventHistoryCommandIn";
+import {createApi} from "@/domains/sample/modules/user-refactoring/adapter/event/out/api/EventWebRestApi";
+import {UserEventHistory} from "@/domains/sample/modules/user-refactoring/domain/event/entity/UserEventHistory";
 
 @Service
 class EventHistoryService implements EventHistoryQueryIn {

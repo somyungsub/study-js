@@ -1,5 +1,5 @@
 import {type Ref, ref} from "vue";
-import {User} from "@/domains/sample/modules/user-refactoring/domain/entity/User";
+import {User} from "@/domains/sample/modules/user-refactoring/domain/user/entity/User";
 import {createService} from "@/domains/sample/modules/user-refactoring/application/user/UserService";
 
 export type useUserListType = {

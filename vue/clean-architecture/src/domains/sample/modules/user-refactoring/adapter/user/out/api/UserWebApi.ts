@@ -1,8 +1,8 @@
-import {Email} from "@/domains/sample/modules/user-refactoring/domain/vo/Email";
-import {GENDER, USER_TYPES} from "@/domains/sample/modules/user-refactoring/domain/constant/UserTypes";
+import {Email} from "@/domains/sample/modules/user-refactoring/domain/user/vo/Email";
+import {GENDER, USER_TYPES} from "@/domains/sample/modules/user-refactoring/domain/user/constant/UserTypes";
 import {WebApi} from "@/common/core/decorator/ProviderDecorator";
 import type {UserApiOut} from "@/domains/sample/modules/user-refactoring/application/user/required/UserApiOut";
-import {User} from "@/domains/sample/modules/user-refactoring/domain/entity/User";
+import {User} from "@/domains/sample/modules/user-refactoring/domain/user/entity/User";
 import {ProviderRegistry} from "@/common/core/registry/ProviderRegistry";
 
 // 유저 테스트 데이터
@@ -12,7 +12,7 @@ const userRepository: any[] = [
 ];
 
 @WebApi
-class UserRestApi implements UserApiOut {
+class UserWebApi implements UserApiOut {
   async fetchAllUser(): Promise<User[]> {
     // TODO 서버 api 통신후 response data -> 도메인 entity로 변환 작업, 현재는 샘플 data -> User entity, from으로 매핑
     return await Promise.resolve(userRepository).then((values) => values.map(User.from));
@@ -36,6 +36,6 @@ function includeUser(user: User) {
 export const createOutPort: {
   api: UserApiOut;
 } = {
-  api: ProviderRegistry.get<UserApiOut>("UserRestApi")
-  // api: new UserRestApi()
+  api: ProviderRegistry.get<UserApiOut>("UserWebApi")
+  // api: new UserWebApi()
 }
