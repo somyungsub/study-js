@@ -113,3 +113,76 @@ user-refactoring/
 └── store/                        # (선택) 상태 관리 (Pinia 등 사용 시)
     └── ...
 ```
+
+
+## (최종) 프론트 클린아키텍처 
+```text
+modules/
+└── system-config/
+    ├── adapter/
+    │   ├── system/
+    │   └── ui/
+    │       ├── in/
+    │       │   └── composable/
+    │       │       └── useUiConfig.ts
+    │       └── out/
+    │           └── api/
+    │               └── UiConfigWebApi.ts
+    │
+    ├── application/
+    │   ├── system/
+    │   └── ui/
+    │       ├── provided/
+    │       │   ├── UiConfigCommand.ts
+    │       │   ├── UiConfigCopy.ts
+    │       │   └── UiConfigLoad.ts
+    │       ├── required/
+    │       │   ├── UiConfigCommand.ts
+    │       │   └── UiConfigQuery.ts
+    │       └── usecase/
+    │           └── UiConfigService.ts
+    │
+    ├── domain/
+    │   ├── system/
+    │   └── ui/
+    │       └── entity/
+    │           └── UiConfig.ts
+    │
+    └── page/
+        ├── system/
+        └── ui/
+            ├── components/
+            ├── popup/
+            │   ├── UiConfigPopup.vue
+            │   └── UiConfigDetail.vue
+            ├── UiConfigManagementMain.scss
+            └── UiConfigManagementMain.vue
+```
+
+| 레이어                             | 대표 경로                                                                          | 역할/내용                                           | 의존 규칙(허용 → 금지)                                                                | 비고/예시                                                              |
+| ------------------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Page (View)**                 | `page/ui/*`                                                                    | 라우트 엔트리, 화면 컴포넌트 렌더링, 이벤트 바인딩                   | Page → **Adapter In** → Application / **(금지)** Page가 Application/Domain 직접 참조 | `UiConfigManagementMain.vue`, 팝업/세부 화면 포함                          |
+| **Adapter In (Composable/VM)**  | `adapter/ui/in/composable/useUiConfig.ts`                                      | 유즈케이스 호출, DTO→ViewModel 매핑, 화면 상태 orchestration | Adapter In → **Application (provided)** / **(금지)** HTTP 직접 호출, Domain 직접 갱신   | 기존 Facade 역할을 컴포저블로 수행                                             |
+| **Adapter Out (API 등)**         | `adapter/ui/out/api/UiConfigWebApi.ts`                                         | 외부 통신 구현(HTTP 등), 외부↔내부 모델 변환(AC)               | Adapter Out ⟵ **Application (required)** / **(금지)** Page 직접 호출                | `UiConfigReader/Writer` 등 required 포트 구현체                          |
+| **Application – Provided (계약)** | `application/ui/provided/*`                                                    | 외부(어댑터 in)가 호출할 유즈케이스 **인터페이스**                 | Provided는 구현 없음 / **(금지)** 어댑터 참조                                             | `UiConfigLoad.ts`, `UiConfigCopy.ts`, `UiConfigCommand.ts` (인터페이스) |
+| **Application – Required (계약)** | `application/ui/required/*`                                                    | 유즈케이스가 필요로 하는 외부 의존 **포트 인터페이스**                | Required는 구현 없음 / **(금지)** 어댑터 참조                                             | `UiConfigQuery.ts`, `UiConfigCommand.ts` (포트)                      |
+| **Application – Usecase (구현)**  | `application/ui/usecase/UiConfigService.ts`                                    | Provided 인터페이스 구현, Required 포트 주입받아 오케스트레이션     | Usecase → **Required**, **Domain** / **(금지)** 어댑터 참조                          | 쿼리/커맨드 로직 포함 (필요시 `queries/`, `commands/`로 세분화 가능)                 |
+| **Domain (Entity/VO/Service)**  | `domain/ui/entity/UiConfig.ts`                                                 | 순수 비즈니스 규칙/모델 (UI/네트워크 모름)                      | **어느 어댑터/외부도 의존 금지**                                                          | 도메인 서비스/VO 필요 시 `service/`, `vo/` 추가                               |
+| **Module 공용 UI**                | `page/ui/components/*`                                                         | 해당 모듈 내 여러 화면에서 재사용할 View 전용 컴포넌트               | Components → **Adapter In**(선택), **Domain 직접금지**                              | 스타일/프리젠테이션 로직만                                                     |
+| **system 하위**                   | `adapter/system/*`, `application/system/*`, `domain/system/*`, `page/system/*` | system 기능이 추가될 때 동일 패턴으로 확장                     | 동일 규칙 준수                                                                      | MFE 전환 시 ui/system 각각 분리 가능                                        |
+
+메모(선택 개선 포인트)
+- 네이밍을 더 명확히 하려면:
+  - Provided: LoadUiConfigUseCase.ts, CopyUiConfigUseCase.ts, UpdateUiConfigUseCase.ts 
+  - Required: UiConfigReader.ts, UiConfigWriter.ts 
+  - Usecase 폴더: usecases/queries/…, usecases/commands/… 세분화 
+  - useUiConfig.ts는 **useUiConfigVM.ts**처럼 의도를 드러내면 탐색성이 좋아집니다. 
+  - ESLint로 의존 경계 강제: adapter → application → domain만 허용, 역참조 금지.
+- 계층/모델/feature 형태로 간소화
+  - application/system/provided,requireded
+  - adapter/system/composable
+  - adapter/system/api
+- 원래대로라면 -> in,out을 명시해주는게 더 깔끔
+  - application/system/provided, requireded
+  - adapter/system/in/composable
+  - adapter/system/out/api
