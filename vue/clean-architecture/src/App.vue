@@ -1,8 +1,9 @@
-<script setup>
-import UserPage from "./domains/sample/modules/user/page/UserPage.vue";
-import UserPageRefactoring from "./domains/sample/modules/user-refactoring/page/UserPageRefactoring.vue";
-import OrderPage from "./domains/sample/modules/order/page/OrderPage.vue";
-import UserPageJs from "./domains/sample/modules/use-js/page/UserPageJs.vue";
+<script setup lang="ts">
+//@ts-ignore
+import UserPageJs from "@/domains/sample/modules/use-js/page/UserPageJs.vue";
+import UserPage from "@/domains/sample/modules/user/page/UserPage.vue";
+import UserPageRefactoring from "@/domains/sample/modules/user-refactoring/page/UserPageRefactoring.vue";
+import OrderPage from "@/domains/sample/modules/order/page/OrderPage.vue";
 
 const _var = {
   textColor:{
@@ -12,7 +13,7 @@ const _var = {
     get yellow() {
       return this.color('yellow');
     },
-    color(color) {
+    color(color: any) {
       return {'--textColorVar': `${color}`};
     },
   }

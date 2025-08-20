@@ -33,9 +33,13 @@ function includeUser(user: User) {
   return userRepository.map(value => value.id).includes(user.id);
 }
 
-export const createOutPort: {
-  api: UserApiOut;
-} = {
+// export const createOutPort: {
+//   api: UserApiOut;
+// } = {
+//   api: ProviderRegistry.get<UserApiOut>("UserWebApi")
+//   // api: new UserWebApi()
+// }
+
+export const createOutPort = () => ({
   api: ProviderRegistry.get<UserApiOut>("UserWebApi")
-  // api: new UserWebApi()
-}
+})

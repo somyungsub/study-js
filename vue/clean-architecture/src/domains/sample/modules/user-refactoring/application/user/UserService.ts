@@ -13,7 +13,7 @@ import type {UserBizIn} from "@/domains/sample/modules/user-refactoring/applicat
 @Service
 class UserQueryService implements UserQueryIn {
   constructor(private userApi: UserApiOut) {
-    this.userApi = createOutPort.api;
+    this.userApi = createOutPort().api;
   }
 
   getUserDetailList(): Promise<User[]> {
@@ -30,7 +30,7 @@ class UserQueryService implements UserQueryIn {
 @Service
 class UserCommandService implements UserCommandIn {
   constructor(private userApi: UserApiOut) {
-    this.userApi = createOutPort.api;
+    this.userApi = createOutPort().api;
   }
 
   async saveUser(user: User): Promise<number> {
